@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "expo start --dev-client",
+    "ios": "expo run:ios",
+    "ios:device": "expo run:ios --device",
+    "android": "expo run:android",
     "web": "expo start --web",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write . && eslint --fix .",
@@ -13,7 +14,7 @@
   },
   "dependencies": {
     "@types/react": "~18.0.27",
-    "expo": "^48.0.7",
+    "expo": "~48.0.11",
     "expo-constants": "~14.2.1",
     "expo-linking": "~4.0.1",
     "expo-router": "^1.5.3",

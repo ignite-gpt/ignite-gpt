@@ -5,6 +5,9 @@
       "bundler": "metro"
     },
     "name": "melodify",
-    "slug": "melodify"
+    "slug": "melodify",
+    "ios": {
+      "bundleIdentifier": "com.thereplicants.melodify"
+    }
   }
 }
