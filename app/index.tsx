@@ -1,11 +1,9 @@
-import { Text, View } from 'react-native';
+import { Button, Center } from 'native-base';
 
 export default function Page() {
   return (
-    <View>
-      <View>
-        <Text>Hello World</Text>
-      </View>
-    </View>
+    <Center height='100%' width='100%'>
+      <Button onPress={() => console.log('Hello world')}>Hello world</Button>
+    </Center>
   );
 }
