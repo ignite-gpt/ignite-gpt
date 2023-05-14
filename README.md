@@ -1,3 +1,3 @@
-# Melodify
+# MatrixGPT
 
-Melodify is an experimental music AI app that can update an Ableton Live set.
+MatrixGPT is a cross-platform AI application that adds powerful features to ChatGPT.

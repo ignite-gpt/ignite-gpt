@@ -1,13 +1,13 @@
 {
   "expo": {
-    "scheme": "melodify",
+    "scheme": "matrix",
     "web": {
       "bundler": "metro"
     },
-    "name": "melodify",
-    "slug": "melodify",
+    "name": "matrix",
+    "slug": "matrix",
     "ios": {
-      "bundleIdentifier": "com.thereplicants.melodify"
+      "bundleIdentifier": "com.thereplicants.matrix"
     }
   }
 }
