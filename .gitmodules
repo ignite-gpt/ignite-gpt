@@ -1,0 +1,3 @@
+[submodule "electron-react-boilerplate"]
+	path = electron-react-boilerplate
+	url = git@github.com:electron-react-boilerplate/electron-react-boilerplate.git
