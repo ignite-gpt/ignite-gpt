@@ -16,3 +16,6 @@ web-build/
 # Expo
 ios/
 android/
+
+# dotenv
+.env
