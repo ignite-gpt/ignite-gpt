@@ -36,10 +36,10 @@
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
-    "dotenv": "^16.0.3",
     "eslint": "^8.38.0",
     "eslint-config-universe": "^11.2.0",
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.7",
+    "react-native-dotenv": "^3.4.8"
   },
   "overrides": {
     "metro": "0.76.0",
