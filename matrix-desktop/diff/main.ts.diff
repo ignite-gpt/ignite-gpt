@@ -1,0 +1,11 @@
+diff --git a/electron-react-boilerplate/src/main/main.ts b/electron-react-boilerplate/src/main/main.ts
+index 05b44eb..29c2ef4 100644
+--- a/electron-react-boilerplate/src/main/main.ts
++++ b/electron-react-boilerplate/src/main/main.ts
+@@ -82,5 +82,5 @@ const createWindow = async () => {
+   });
+ 
+-  mainWindow.loadURL(resolveHtmlPath('index.html'));
++  mainWindow.loadURL('http://localhost:19000');
+ 
+   mainWindow.on('ready-to-show', () => {

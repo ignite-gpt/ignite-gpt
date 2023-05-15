@@ -1,11 +1,11 @@
 {
   "expo": {
+    "name": "MatrixGPT",
+    "slug": "matrix",
     "scheme": "matrix",
     "web": {
       "bundler": "metro"
     },
-    "name": "matrix",
-    "slug": "matrix",
     "ios": {
       "bundleIdentifier": "com.thereplicants.matrix"
     }

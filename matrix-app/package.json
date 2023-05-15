@@ -1,13 +1,12 @@
 {
-  "name": "matrix",
-  "version": "0.1.0",
+  "name": "matrix-app",
   "private": true,
   "scripts": {
     "start": "expo start --dev-client",
     "ios": "expo run:ios",
     "ios:device": "expo run:ios --device",
     "android": "expo run:android",
-    "web": "expo start --web",
+    "web": "expo start --web --port=19000",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write . && eslint --fix .",
     "test": "jest"

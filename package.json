@@ -1,0 +1,15 @@
+{
+  "name": "matrix",
+  "private": true,
+  "scripts": {
+    "preinstall": "git submodule update --init --recursive",
+    "postinstall": "(cd matrix-app && npm install) & (cd electron-react-boilerplate && npm install)",
+    "start:web": "cd matrix-app && BROWSER=false npm run web",
+    "desktop:apply": "git apply matrix-desktop/diff/main.ts.diff",
+    "start:desktop": "npm run desktop:apply && trap 'cd electron-react-boilerplate && git reset --hard' INT TERM && (cd electron-react-boilerplate && npm run start)",
+    "start": "concurrently npm:start:*"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
