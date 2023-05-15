@@ -1,6 +1,12 @@
-import { ArrowUpIcon, IconButton, Input, Row } from 'native-base'
+import { ArrowUpIcon, Button, Input, Row } from 'native-base'
+import { useState } from 'react'
 
-export default function ChatInput() {
+import { completion } from '../lib/openai'
+
+export default function ChatInput({ onResponse }) {
+  const [inputValue, setInputValue] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
   return (
     <Row
       alignItems="space-between"
@@ -11,17 +17,24 @@ export default function ChatInput() {
     >
       <Input
         flexGrow={1}
-        onChangeText={() => {}}
+        onChangeText={(text) => setInputValue(text)}
         placeholder="Send a message"
         size="lg"
-        value={''}
+        value={inputValue}
       />
-      <IconButton
-        icon={<ArrowUpIcon />}
-        onPress={() => {}}
+      <Button
+        onPress={async () => {
+          setIsLoading(true)
+          const response = await completion(inputValue)
+          onResponse(response)
+          setIsLoading(false)
+        }}
         size={12}
         variant="solid"
-      />
+        isLoading={isLoading}
+      >
+        <ArrowUpIcon size={6} color="white" />
+      </Button>
     </Row>
   )
 }
