@@ -13,9 +13,15 @@ export default function ChatInput() {
         flexGrow={1}
         onChangeText={() => {}}
         placeholder="Send a message"
+        size="lg"
         value={''}
       />
-      <IconButton variant="solid" icon={<ArrowUpIcon />} onPress={() => {}} />
+      <IconButton
+        icon={<ArrowUpIcon />}
+        onPress={() => {}}
+        size={12}
+        variant="solid"
+      />
     </Row>
   )
 }
