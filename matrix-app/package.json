@@ -20,6 +20,7 @@
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.2",
     "native-base": "^3.4.28",
+    "openai": "^3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.7",
