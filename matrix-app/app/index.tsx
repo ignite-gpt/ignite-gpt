@@ -17,7 +17,7 @@ export default function Page() {
           width="100%"
         >
           <Text color="muted.400" fontSize="5xl" fontWeight="500" margin={8}>
-            MatrixGPT
+            IgniteGPT
           </Text>
           <Text fontSize="lg">{response}</Text>
         </Column>

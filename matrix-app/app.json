@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "MatrixGPT",
-    "slug": "matrix",
-    "scheme": "matrix",
+    "name": "IgniteGPT",
+    "slug": "ignite-gpt",
+    "scheme": "ignite-gpt",
     "web": {
       "bundler": "metro"
     },
     "ios": {
-      "bundleIdentifier": "com.thereplicants.matrix"
+      "bundleIdentifier": "ai.ignitegpt.ignite-gpt"
     }
   }
 }

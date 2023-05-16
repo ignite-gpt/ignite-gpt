@@ -1,5 +1,5 @@
 {
-  "name": "matrix-app",
+  "name": "ignite-gpt-app",
   "private": true,
   "scripts": {
     "start": "expo start --dev-client",

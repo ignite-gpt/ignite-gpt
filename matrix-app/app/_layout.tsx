@@ -24,7 +24,7 @@ export default function App() {
   return (
     <NativeBaseProvider theme={theme}>
       <Column height="100%" width="100%">
-        <AppBar>MatrixGPT</AppBar>
+        <AppBar>IgniteGPT</AppBar>
         <Box flexGrow={1}>
           <Slot />
         </Box>
