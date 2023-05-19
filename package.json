@@ -3,17 +3,19 @@
   "private": true,
   "scripts": {
     "preinstall": "git submodule update --init --recursive",
-    "postinstall": "(cd ignite-gpt-app && npm install) & (cd electron-react-boilerplate && npm install)",
+    "postinstall:app": "cd ignite-gpt-app && npm install",
+    "postinstall:openapi": "cd ignite-gpt-openapi && npm install",
+    "postinstall:erb": "cd electron-react-boilerplate && npm install",
+    "postinstall": "npm-run-all -p -l postinstall:**",
     "start:web": "cd ignite-gpt-app && BROWSER=false npm run web",
     "desktop:apply": "git apply ignite-gpt-desktop/diff/main.ts.diff",
     "start:desktop": "npm run desktop:apply && trap 'cd electron-react-boilerplate && git reset --hard' INT TERM && (cd electron-react-boilerplate && npm run start)",
-    "start": "concurrently npm:start:*"
+    "start": "npm-p -l start:**",
+    "generate:openapi": "cd ignite-gpt-openapi && npm run generate:openapi",
+    "generate:query": "cd ignite-gpt-app && npm run generate:query",
+    "generate": "npm-run-all -s -l generate:**"
   },
   "devDependencies": {
-    "concurrently": "^8.0.1"
-  },
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.9.5",
-    "react-redux": "^8.0.5"
+    "npm-run-all": "^4.1.5"
   }
 }

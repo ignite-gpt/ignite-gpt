@@ -2,5 +2,8 @@
   "name": "ignite-gpt-openapi",
   "devDependencies": {
     "@apidevtools/swagger-cli": "^4.0.4"
+  },
+  "scripts": {
+    "generate:openapi": "swagger-cli bundle openapi.yaml -o ./openapi.json -t json"
   }
 }
