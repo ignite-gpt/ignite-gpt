@@ -1,0 +1,290 @@
+/trees:
+  get:
+    summary: Get trees
+    operationId: getTrees
+    parameters:
+      - name: owner
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: forks
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: createdAt
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: updatedAt
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: A list of trees
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/TreesResponse'
+      default:
+        description: Unexpected errors
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ErrorsResponse'
+  post:
+    summary: Create a new tree
+    operationId: createTree
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateTreeRequest'
+    responses:
+      '201':
+        description: A created tree
+        headers:
+          Location:
+            schema:
+              type: string
+            description: The url of the newly created tree
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/TreeResponse'
+      default:
+        description: Unexpected errors
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ErrorsResponse'
+/trees/{treeId}:
+  get:
+    summary: Get a tree
+    operationId: getTree
+    parameters:
+      - name: treeId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: A tree
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/TreeResponse'
+      default:
+        description: Unexpected errors
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ErrorsResponse'
+  patch:
+    summary: Update a tree
+    operationId: updateTree
+    parameters:
+      - name: treeId
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/UpdateTreeRequest'
+    responses:
+      '200':
+        description: An updated tree
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/TreeResponse'
+      default:
+        description: Unexpected errors
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ErrorsResponse'
+  delete:
+    summary: Delete a tree
+    operationId: deleteTree
+    parameters:
+      - name: treeId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      '204':
+        description: Tree successfully deleted
+      default:
+        description: Unexpected errors
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ErrorsResponse'
+/trees/{treeId}/messages:
+  get:
+    summary: List messages in a tree
+    operationId: getTreeMessages
+    parameters:
+      - name: treeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: role
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: createdAt
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: updatedAt
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+    responses:
+      '200':
+        description: A list of messages in a tree
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/MessagesResponse'
+      default:
+        description: Unexpected errors
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ErrorsResponse'
+  post:
+    summary: Create a new message in a tree
+    operationId: createTreeMessage
+    parameters:
+      - name: treeId
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateMessageRequest'
+    responses:
+      '201':
+        description: A created message
+        headers:
+          Location:
+            schema:
+              type: string
+            description: The url of the newly created message
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/MessageResponse'
+      default:
+        description: Unexpected errors
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ErrorsResponse'
+/trees/{treeId}/messages/{msgId}:
+  patch:
+    summary: Update a message in a tree
+    operationId: updateTreeMessage
+    parameters:
+      - name: treeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: msgId
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/UpdateMessageRequest'
+    responses:
+      '200':
+        description: An updated message
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/MessageResponse'
+      default:
+        description: Unexpected errors
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ErrorsResponse'
+  delete:
+    summary: Delete a message in a tree
+    operationId: deleteTreeMessage
+    parameters:
+      - name: treeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: msgId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      '204':
+        description: Message successfully deleted
+      default:
+        description: Unexpected errors
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/ErrorsResponse'

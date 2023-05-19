@@ -1,0 +1,19 @@
+openapi: 3.1.0
+info:
+  title: LLM Interface API
+  description: An API for interacting with LLMs.
+  version: 1.0.0
+servers:
+  - url: https://your-api-url.com/api/v1
+paths:
+  $ref: './paths.yaml'
+components:
+  schemas:
+    $ref: './schemas.yaml'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
