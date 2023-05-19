@@ -18,11 +18,11 @@ TreeAttributes:
     description:
       type: string
     createdAt:
-      type: integer
-      format: int64
+      type: string
+      format: date-time
     updatedAt:
-      type: integer
-      format: int64
+      type: string
+      format: date-time
     owner:
       type: string
     isPrivate:
@@ -126,11 +126,11 @@ MessageAttributes:
   type: object
   properties:
     createdAt:
-      type: integer
-      format: int64
+      type: string
+      format: date-time
     updatedAt:
-      type: integer
-      format: int64
+      type: string
+      format: date-time
     isDeleted:
       type: boolean
     parent:

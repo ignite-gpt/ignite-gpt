@@ -17,14 +17,14 @@
         in: query
         required: false
         schema:
-          type: integer
-          format: int64
+          type: string
+          format: date-time
       - name: updatedAt
         in: query
         required: false
         schema:
-          type: integer
-          format: int64
+          type: string
+          format: date-time
       - name: page
         in: query
         required: false
@@ -167,14 +167,14 @@
         in: query
         required: false
         schema:
-          type: integer
-          format: int64
+          type: string
+          format: date-time
       - name: updatedAt
         in: query
         required: false
         schema:
-          type: integer
-          format: int64
+          type: string
+          format: date-time
       - name: page
         in: query
         required: false
