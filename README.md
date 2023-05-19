@@ -2,9 +2,46 @@
 
 IgniteGPT is a cross-platform AI application that adds powerful features to ChatGPT.
 
-## openapi code gen
+## Installation
 
-- install swagger-cli: `npm install -g @apidevtools/swagger-cli`
-- make a folder called `gen`
-- create the openapi spec bundle: `swagger-cli bundle ignite-gpt-openapi/openapi.yaml -o gen/openapi.json -t json`
-- follow instructions on [rtk-query docs](https://redux-toolkit.js.org/rtk-query/usage/code-generation#openapi) to generate rtk-query api
+```sh
+npm install
+```
+
+## Usage
+
+Run the desktop app
+
+```sh
+npm start
+```
+
+Run the web app
+
+```sh
+npm run start:web
+```
+
+Run the iOS app in Simulator. Note: This requires [prerequisites](https://docs.expo.dev/workflow/ios-simulator/).
+
+```sh
+npm run start:ios
+```
+
+Run the iOS app on device. Note: This requires [prerequisites](https://docs.expo.dev/guides/ios-developer-mode/).
+
+```sh
+npm run start:ios:device
+```
+
+## Contributing
+
+### OpenAPI spec
+
+An OpenAPI spec for a persistence API is located in the [`ignite-gpt-openapi`](ignite-gpt-openapi) folder: [`openapi.yaml`](ignite-gpt-openapi/openapi.yaml), [`paths.yaml`](ignite-gpt-openapi/paths.yaml), and [`schemas.yaml`](ignite-gpt-openapi/schemas.yaml).
+
+### Update app code from OpenAPI spec
+
+```sh
+npm run generate
+```

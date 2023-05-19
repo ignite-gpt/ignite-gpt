@@ -15,7 +15,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react": "~18.0.27",
-    "expo": "~48.0.11",
+    "expo": "~48.0.15",
     "expo-constants": "~14.2.1",
     "expo-linking": "~4.0.1",
     "expo-router": "^1.5.3",
@@ -49,5 +49,6 @@
   "overrides": {
     "metro": "0.76.0",
     "metro-resolver": "0.76.0"
-  }
+  },
+  "version": "1.0.0"
 }
