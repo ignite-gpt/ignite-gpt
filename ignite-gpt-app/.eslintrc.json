@@ -1,3 +1,6 @@
 {
-  "extends": "universe"
+  "extends": "universe",
+  "env": {
+    "node": true
+  }
 }

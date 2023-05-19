@@ -13,7 +13,8 @@
     "start": "npm-p -l start:**",
     "generate:openapi": "cd ignite-gpt-openapi && npm run generate:openapi",
     "generate:query": "cd ignite-gpt-app && npm run generate:query",
-    "generate": "npm-run-all -s -l generate:**"
+    "format:app": "cd ignite-gpt-app && npm run format",
+    "generate": "npm-run-all -s -l generate:** format:app"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5"

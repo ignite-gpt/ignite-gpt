@@ -1,4 +1,4 @@
-import { api } from "./emptyApi";
+import { api } from './emptyApi'
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
     getTrees: build.query<GetTreesApiResponse, GetTreesApiArg>({
@@ -17,7 +17,7 @@ const injectedRtkApi = api.injectEndpoints({
     createTree: build.mutation<CreateTreeApiResponse, CreateTreeApiArg>({
       query: (queryArg) => ({
         url: `/trees`,
-        method: "POST",
+        method: 'POST',
         body: queryArg.createTreeRequest,
       }),
     }),
@@ -27,14 +27,14 @@ const injectedRtkApi = api.injectEndpoints({
     updateTree: build.mutation<UpdateTreeApiResponse, UpdateTreeApiArg>({
       query: (queryArg) => ({
         url: `/trees/${queryArg.treeId}`,
-        method: "PATCH",
+        method: 'PATCH',
         body: queryArg.updateTreeRequest,
       }),
     }),
     deleteTree: build.mutation<DeleteTreeApiResponse, DeleteTreeApiArg>({
       query: (queryArg) => ({
         url: `/trees/${queryArg.treeId}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
     }),
     getTreeMessages: build.query<
@@ -59,7 +59,7 @@ const injectedRtkApi = api.injectEndpoints({
     >({
       query: (queryArg) => ({
         url: `/trees/${queryArg.treeId}/messages`,
-        method: "POST",
+        method: 'POST',
         body: queryArg.createMessageRequest,
       }),
     }),
@@ -69,7 +69,7 @@ const injectedRtkApi = api.injectEndpoints({
     >({
       query: (queryArg) => ({
         url: `/trees/${queryArg.treeId}/messages/${queryArg.msgId}`,
-        method: "PATCH",
+        method: 'PATCH',
         body: queryArg.updateMessageRequest,
       }),
     }),
@@ -79,189 +79,189 @@ const injectedRtkApi = api.injectEndpoints({
     >({
       query: (queryArg) => ({
         url: `/trees/${queryArg.treeId}/messages/${queryArg.msgId}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
     }),
   }),
   overrideExisting: false,
-});
-export { injectedRtkApi as enhancedApi };
+})
+export { injectedRtkApi as enhancedApi }
 export type GetTreesApiResponse =
-  /** status 200 A list of trees */ TreesResponse;
+  /** status 200 A list of trees */ TreesResponse
 export type GetTreesApiArg = {
-  owner?: string;
-  forks?: number;
-  createdAt?: string;
-  updatedAt?: string;
-  page?: number;
-  pageSize?: number;
-};
+  owner?: string
+  forks?: number
+  createdAt?: string
+  updatedAt?: string
+  page?: number
+  pageSize?: number
+}
 export type CreateTreeApiResponse =
-  /** status 201 A created tree */ TreeResponse;
+  /** status 201 A created tree */ TreeResponse
 export type CreateTreeApiArg = {
-  createTreeRequest: CreateTreeRequest;
-};
-export type GetTreeApiResponse = /** status 200 A tree */ TreeResponse;
+  createTreeRequest: CreateTreeRequest
+}
+export type GetTreeApiResponse = /** status 200 A tree */ TreeResponse
 export type GetTreeApiArg = {
-  treeId: string;
-};
+  treeId: string
+}
 export type UpdateTreeApiResponse =
-  /** status 200 An updated tree */ TreeResponse;
+  /** status 200 An updated tree */ TreeResponse
 export type UpdateTreeApiArg = {
-  treeId: string;
-  updateTreeRequest: UpdateTreeRequest;
-};
+  treeId: string
+  updateTreeRequest: UpdateTreeRequest
+}
 export type DeleteTreeApiResponse =
-  /** status 204 Tree successfully deleted */ undefined;
+  /** status 204 Tree successfully deleted */ undefined
 export type DeleteTreeApiArg = {
-  treeId: string;
-};
+  treeId: string
+}
 export type GetTreeMessagesApiResponse =
-  /** status 200 A list of messages in a tree */ MessagesResponse;
+  /** status 200 A list of messages in a tree */ MessagesResponse
 export type GetTreeMessagesApiArg = {
-  treeId: string;
-  parent?: string;
-  role?: string;
-  createdAt?: string;
-  updatedAt?: string;
-  page?: number;
-  pageSize?: number;
-};
+  treeId: string
+  parent?: string
+  role?: string
+  createdAt?: string
+  updatedAt?: string
+  page?: number
+  pageSize?: number
+}
 export type CreateTreeMessageApiResponse =
-  /** status 201 A created message */ MessageResponse;
+  /** status 201 A created message */ MessageResponse
 export type CreateTreeMessageApiArg = {
-  treeId: string;
-  createMessageRequest: CreateMessageRequest;
-};
+  treeId: string
+  createMessageRequest: CreateMessageRequest
+}
 export type UpdateTreeMessageApiResponse =
-  /** status 200 An updated message */ MessageResponse;
+  /** status 200 An updated message */ MessageResponse
 export type UpdateTreeMessageApiArg = {
-  treeId: string;
-  msgId: string;
-  updateMessageRequest: UpdateMessageRequest;
-};
+  treeId: string
+  msgId: string
+  updateMessageRequest: UpdateMessageRequest
+}
 export type DeleteTreeMessageApiResponse =
-  /** status 204 Message successfully deleted */ undefined;
+  /** status 204 Message successfully deleted */ undefined
 export type DeleteTreeMessageApiArg = {
-  treeId: string;
-  msgId: string;
-};
+  treeId: string
+  msgId: string
+}
 export type TreeAttributes = {
-  name?: string;
-  description?: string;
-  createdAt?: string;
-  updatedAt?: string;
-  owner?: string;
-  isPrivate?: boolean;
-  isDeleted?: boolean;
-  forks?: number;
-};
+  name?: string
+  description?: string
+  createdAt?: string
+  updatedAt?: string
+  owner?: string
+  isPrivate?: boolean
+  isDeleted?: boolean
+  forks?: number
+}
 export type TreeRelationships = {
   messages?: {
     links?: {
-      related?: string;
-    };
-  };
-};
+      related?: string
+    }
+  }
+}
 export type TreeResource = {
-  id?: string;
-  type?: "tree";
-  attributes?: TreeAttributes;
-  relationships?: TreeRelationships;
-};
+  id?: string
+  type?: 'tree'
+  attributes?: TreeAttributes
+  relationships?: TreeRelationships
+}
 export type PaginationLinks = {
-  self?: string;
-  first?: string;
-  last?: string;
-  prev?: string;
-  next?: string;
-};
+  self?: string
+  first?: string
+  last?: string
+  prev?: string
+  next?: string
+}
 export type TreesResponse = {
-  data: TreeResource[];
-  links?: PaginationLinks;
-};
+  data: TreeResource[]
+  links?: PaginationLinks
+}
 export type Error = {
-  id?: string;
+  id?: string
   links?: {
-    about?: string;
-  };
-  status?: string;
-  code?: string;
-  title?: string;
-  detail: string;
-};
+    about?: string
+  }
+  status?: string
+  code?: string
+  title?: string
+  detail: string
+}
 export type ErrorsResponse = {
-  errors: Error[];
-};
+  errors: Error[]
+}
 export type TreeResponse = {
-  data: TreeResource;
-};
+  data: TreeResource
+}
 export type CreateTreeAttributes = {
-  name?: string;
-  description?: string;
-  isPrivate?: boolean;
-  fork?: string;
-};
+  name?: string
+  description?: string
+  isPrivate?: boolean
+  fork?: string
+}
 export type CreateTreeRequest = {
   data: {
-    type: "tree";
-    attributes: CreateTreeAttributes;
-  };
-};
+    type: 'tree'
+    attributes: CreateTreeAttributes
+  }
+}
 export type UpdateTreeAttributes = {
-  name?: string;
-  description?: string;
-  isPrivate?: boolean;
-};
+  name?: string
+  description?: string
+  isPrivate?: boolean
+}
 export type UpdateTreeRequest = {
   data: {
-    type: "tree";
-    attributes: UpdateTreeAttributes;
-  };
-};
+    type: 'tree'
+    attributes: UpdateTreeAttributes
+  }
+}
 export type MessageAttributes = {
-  createdAt?: string;
-  updatedAt?: string;
-  isDeleted?: boolean;
-  parent?: string;
-  role?: string;
-  content?: string;
-  tokens?: number;
-};
+  createdAt?: string
+  updatedAt?: string
+  isDeleted?: boolean
+  parent?: string
+  role?: string
+  content?: string
+  tokens?: number
+}
 export type MessageResource = {
-  id?: string;
-  type?: "message";
-  attributes?: MessageAttributes;
-};
+  id?: string
+  type?: 'message'
+  attributes?: MessageAttributes
+}
 export type MessagesResponse = {
-  data: MessageResource[];
-  links?: PaginationLinks;
-};
+  data: MessageResource[]
+  links?: PaginationLinks
+}
 export type MessageResponse = {
-  data: MessageResource;
-};
+  data: MessageResource
+}
 export type CreateMessageAttributes = {
-  parent?: string;
-  role?: string;
-  content?: string;
-};
+  parent?: string
+  role?: string
+  content?: string
+}
 export type CreateMessageRequest = {
   data: {
-    type: "message";
-    attributes: CreateMessageAttributes;
-  };
-};
+    type: 'message'
+    attributes: CreateMessageAttributes
+  }
+}
 export type UpdateMessageAttributes = {
-  parent?: string;
-  role?: string;
-  content?: string;
-};
+  parent?: string
+  role?: string
+  content?: string
+}
 export type UpdateMessageRequest = {
   data: {
-    type: "message";
-    attributes: UpdateMessageAttributes;
-  };
-};
+    type: 'message'
+    attributes: UpdateMessageAttributes
+  }
+}
 export const {
   useGetTreesQuery,
   useCreateTreeMutation,
@@ -272,4 +272,4 @@ export const {
   useCreateTreeMessageMutation,
   useUpdateTreeMessageMutation,
   useDeleteTreeMessageMutation,
-} = injectedRtkApi;
+} = injectedRtkApi
