@@ -1,0 +1,6 @@
+{
+  "name": "ignite-gpt-openapi",
+  "devDependencies": {
+    "@apidevtools/swagger-cli": "^4.0.4"
+  }
+}
