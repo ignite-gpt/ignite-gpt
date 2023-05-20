@@ -8,6 +8,7 @@ import {
   Text,
 } from 'native-base'
 import { useState } from 'react'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { completion } from '../lib/openAi'
 import { useAppSelector } from '../store/hooks'
@@ -17,6 +18,7 @@ export default function ChatInput({ onResponse }) {
   const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const insets = useSafeAreaInsets()
 
   const onPress = async () => {
     setError('')
@@ -45,9 +47,9 @@ export default function ChatInput({ onResponse }) {
         </Row>
       )}
       <Row
-        alignItems="space-between"
         flexGrow={0}
-        padding={2}
+        paddingX={4}
+        paddingY={insets.bottom > 0 ? 0 : 4}
         space={2}
         width="100%"
       >
@@ -55,16 +57,11 @@ export default function ChatInput({ onResponse }) {
           flexGrow={1}
           onChangeText={(text) => setInputValue(text)}
           placeholder="Send a message"
-          size="lg"
+          size="2xl"
           value={inputValue}
           backgroundColor="white"
         />
-        <Button
-          onPress={onPress}
-          size={12}
-          variant="solid"
-          isLoading={isLoading}
-        >
+        <Button isLoading={isLoading} onPress={onPress} variant="solid">
           <ArrowUpIcon size={6} color="white" />
         </Button>
       </Row>

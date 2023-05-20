@@ -8,6 +8,7 @@ import {
   Text,
 } from 'native-base'
 import { useState } from 'react'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import AppBar from '../components/AppBar'
 import ChatInput from '../components/ChatInput'
@@ -19,9 +20,10 @@ export default function Page() {
   const openAiApiKey = useAppSelector((state) => state.env?.openAiApiKey)
   const [openAiApiKeyInput, setOpenAiApiKeyInput] = useState('')
   const [response, setResponse] = useState('')
+  const insets = useSafeAreaInsets()
 
   return (
-    <Column height="100%" width="100%">
+    <Column height="100%" width="100%" paddingBottom={insets.bottom}>
       <AppBar />
       <Flex direction="row" justifyContent="center" flexGrow={1}>
         <Column
