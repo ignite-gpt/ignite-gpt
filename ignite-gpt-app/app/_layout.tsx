@@ -1,7 +1,9 @@
 import { Slot } from 'expo-router'
 import { Box, Column, extendTheme, NativeBaseProvider } from 'native-base'
+import { Provider } from 'react-redux'
 
 import AppBar from '../components/AppBar'
+import { store } from '../store/store'
 
 const theme = extendTheme({
   colors: {
@@ -22,13 +24,15 @@ const theme = extendTheme({
 
 export default function App() {
   return (
-    <NativeBaseProvider theme={theme}>
-      <Column height="100%" width="100%">
-        <AppBar>IgniteGPT</AppBar>
-        <Box flexGrow={1}>
-          <Slot />
-        </Box>
-      </Column>
-    </NativeBaseProvider>
+    <Provider store={store}>
+      <NativeBaseProvider theme={theme}>
+        <Column height="100%" width="100%">
+          <AppBar>IgniteGPT</AppBar>
+          <Box flexGrow={1}>
+            <Slot />
+          </Box>
+        </Column>
+      </NativeBaseProvider>
+    </Provider>
   )
 }

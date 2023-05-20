@@ -1,10 +1,4 @@
-import { OPENAI_API_KEY } from '@env'
 import { Configuration, OpenAIApi } from 'openai'
-
-const configuration = new Configuration({
-  apiKey: OPENAI_API_KEY,
-})
-const openai = new OpenAIApi(configuration)
 
 /**
  * Example response:
@@ -26,7 +20,15 @@ const openai = new OpenAIApi(configuration)
  *   ]
  * }
  */
-export async function completion(prompt) {
+export async function completion({ openAiApiKey, prompt }) {
+  if (!openAiApiKey) {
+    throw new Error('OpenAI API key not found')
+  }
+  const configuration = new Configuration({
+    apiKey: openAiApiKey,
+  })
+  const openai = new OpenAIApi(configuration)
+
   const response = await openai.createChatCompletion({
     frequency_penalty: 0,
     max_tokens: 256,
