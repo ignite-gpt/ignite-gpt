@@ -1,7 +1,6 @@
 import { Slot } from 'expo-router'
 import { Box, Column, extendTheme, NativeBaseProvider } from 'native-base'
 import { Provider } from 'react-redux'
-import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import AppBar from '../components/AppBar'
