@@ -57,6 +57,7 @@ export default function ChatInput({ onResponse }) {
           placeholder="Send a message"
           size="lg"
           value={inputValue}
+          backgroundColor="white"
         />
         <Button
           onPress={onPress}

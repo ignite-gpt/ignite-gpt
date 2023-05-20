@@ -9,6 +9,7 @@ import {
 } from 'native-base'
 import { useState } from 'react'
 
+import AppBar from '../components/AppBar'
 import ChatInput from '../components/ChatInput'
 import { save } from '../store/envSlice'
 import { useAppSelector, useAppDispatch } from '../store/hooks'
@@ -21,6 +22,7 @@ export default function Page() {
 
   return (
     <Column height="100%" width="100%">
+      <AppBar />
       <Flex direction="row" justifyContent="center" flexGrow={1}>
         <Column
           alignItems="center"
