@@ -1,9 +1,8 @@
-import { Slot } from 'expo-router'
-import { Box, Column, extendTheme, NativeBaseProvider } from 'native-base'
+import { extendTheme, NativeBaseProvider } from 'native-base'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import AppBar from '../components/AppBar'
+import Chrome from '../components/Chrome'
 import { persistor, store } from '../store/store'
 
 const theme = extendTheme({
@@ -28,12 +27,7 @@ export default function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NativeBaseProvider theme={theme}>
-          <Column height="100%" width="100%">
-            <AppBar>IgniteGPT</AppBar>
-            <Box flexGrow={1}>
-              <Slot />
-            </Box>
-          </Column>
+          <Chrome />
         </NativeBaseProvider>
       </PersistGate>
     </Provider>
