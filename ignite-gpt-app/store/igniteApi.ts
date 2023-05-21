@@ -204,6 +204,7 @@ export type CreateTreeAttributes = {
 }
 export type CreateTreeRequest = {
   data: {
+    id?: string
     type: 'tree'
     attributes: CreateTreeAttributes
   }
@@ -247,6 +248,7 @@ export type CreateMessageAttributes = {
 }
 export type CreateMessageRequest = {
   data: {
+    id?: string
     type: 'message'
     attributes: CreateMessageAttributes
   }

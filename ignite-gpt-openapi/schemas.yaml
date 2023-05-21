@@ -91,6 +91,8 @@ CreateTreeRequest:
         - type
         - attributes
       properties:
+        id:
+          type: string
         type:
           type: string
           enum: [tree]
@@ -189,6 +191,8 @@ CreateMessageRequest:
         - type
         - attributes
       properties:
+        id:
+          type: string
         type:
           type: string
           enum: [message]
