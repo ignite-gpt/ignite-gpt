@@ -1,8 +1,16 @@
 import { Stack } from 'expo-router'
-import { HamburgerIcon, ThreeDotsIcon, useTheme } from 'native-base'
+import {
+  HamburgerIcon,
+  ThreeDotsIcon,
+  useTheme,
+  useMediaQuery,
+} from 'native-base'
 
 export default function Chrome() {
   const { colors, fontSizes, fontWeights } = useTheme()
+  const [isSmall] = useMediaQuery({
+    maxWidth: 475,
+  })
 
   return (
     <Stack
@@ -15,8 +23,20 @@ export default function Chrome() {
           fontWeight: fontWeights.bold.toString() as any,
           fontSize: fontSizes['2xl'],
         },
-        headerLeft: () => <HamburgerIcon size="xl" color={colors.white} />,
-        headerRight: () => <ThreeDotsIcon size="md" color={colors.white} />,
+        headerLeft: () => (
+          <HamburgerIcon
+            color={colors.white}
+            paddingX={isSmall ? 0 : 4}
+            size="xl"
+          />
+        ),
+        headerRight: () => (
+          <ThreeDotsIcon
+            color={colors.white}
+            paddingX={isSmall ? 0 : 4}
+            size="md"
+          />
+        ),
       }}
     />
   )
