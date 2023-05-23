@@ -1,9 +1,10 @@
 {
   "name": "ignite-gpt-openapi",
-  "devDependencies": {
-    "@apidevtools/swagger-cli": "^4.0.4"
-  },
   "scripts": {
-    "generate:openapi": "swagger-cli bundle openapi.yaml -o ./openapi.json -t json"
+    "generate:openapi": "redocly bundle openapi.yaml --output openapi.json",
+    "build:docs": "redocly build-docs openapi.yaml --output docs/index.html"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^1.0.0-beta.126"
   }
 }
