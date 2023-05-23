@@ -5,12 +5,9 @@ const injectedRtkApi = api.injectEndpoints({
       query: (queryArg) => ({
         url: `/trees`,
         params: {
-          owner: queryArg.owner,
-          forks: queryArg.forks,
-          createdAt: queryArg.createdAt,
-          updatedAt: queryArg.updatedAt,
           page: queryArg.page,
-          pageSize: queryArg.pageSize,
+          sort: queryArg.sort,
+          filter: queryArg.filter,
         },
       }),
     }),
@@ -44,12 +41,9 @@ const injectedRtkApi = api.injectEndpoints({
       query: (queryArg) => ({
         url: `/trees/${queryArg.treeId}/messages`,
         params: {
-          parent: queryArg.parent,
-          role: queryArg.role,
-          createdAt: queryArg.createdAt,
-          updatedAt: queryArg.updatedAt,
           page: queryArg.page,
-          pageSize: queryArg.pageSize,
+          sort: queryArg.sort,
+          filter: queryArg.filter,
         },
       }),
     }),
@@ -89,12 +83,18 @@ export { injectedRtkApi as enhancedApi }
 export type GetTreesApiResponse =
   /** status 200 A list of trees */ TreesResponse
 export type GetTreesApiArg = {
-  owner?: string
-  forks?: number
-  createdAt?: string
-  updatedAt?: string
-  page?: number
-  pageSize?: number
+  page?: {
+    number?: number
+    size?: number
+  }
+  /** Comma-separated field names to sort by. Use -<fieldname> for descending order. */
+  sort?: string
+  /** Field to filter by, in the format filter[<fieldname>][<operator>]=<value>. Operators can be eq (equals), gt (greater than), lt (less than), gte (greater than or equals), lte (less than or equals), ne (not equals). */
+  filter?: {
+    [key: string]: {
+      [key: string]: string
+    }
+  }
 }
 export type CreateTreeApiResponse =
   /** status 201 A created tree */ TreeResponse
@@ -120,12 +120,18 @@ export type GetTreeMessagesApiResponse =
   /** status 200 A list of messages in a tree */ MessagesResponse
 export type GetTreeMessagesApiArg = {
   treeId: string
-  parent?: string
-  role?: string
-  createdAt?: string
-  updatedAt?: string
-  page?: number
-  pageSize?: number
+  page?: {
+    number?: number
+    size?: number
+  }
+  /** Comma-separated field names to sort by. Use -<fieldname> for descending order. */
+  sort?: string
+  /** Field to filter by, in the format filter[<fieldname>][<operator>]=<value>. Operators can be eq (equals), gt (greater than), lt (less than), gte (greater than or equals), lte (less than or equals), ne (not equals). */
+  filter?: {
+    [key: string]: {
+      [key: string]: string
+    }
+  }
 }
 export type CreateTreeMessageApiResponse =
   /** status 201 A created message */ MessageResponse
@@ -216,6 +222,7 @@ export type UpdateTreeAttributes = {
 }
 export type UpdateTreeRequest = {
   data: {
+    id: string
     type: 'tree'
     attributes: UpdateTreeAttributes
   }
@@ -260,6 +267,7 @@ export type UpdateMessageAttributes = {
 }
 export type UpdateMessageRequest = {
   data: {
+    id: string
     type: 'message'
     attributes: UpdateMessageAttributes
   }
