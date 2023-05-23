@@ -33,8 +33,8 @@ export default function Page() {
               </Text>
             </Center>
           )}
-          {!!message && <ChatCard author="user">{message}</ChatCard>}
-          {!!response && <ChatCard author="llm">{response}</ChatCard>}
+          {!!message && <ChatCard role="user">{message}</ChatCard>}
+          {!!response && <ChatCard role="assistant">{response}</ChatCard>}
         </Column>
       </Flex>
       {!!openAiApiKey && (

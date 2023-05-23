@@ -2,16 +2,18 @@ import { Box, Text } from 'native-base'
 
 export default function ChatCard({
   children,
-  author,
+  role,
 }: {
   children: React.ReactNode
-  author?: 'llm' | 'user'
+  role?: 'system' | 'assistant' | 'user'
 }) {
   return (
     <Box marginBottom={2}>
-      {!!author && (
+      {!!role && (
         <Text color="gray.500" fontSize="xs" marginLeft={1}>
-          {author === 'user' ? '👤 You' : '🤖 GPT-4'}
+          {role === 'system' && '📇 System'}
+          {role === 'assistant' && '🤖 GPT-4'}
+          {role === 'user' && '👤 You'}
         </Text>
       )}
       <Box
