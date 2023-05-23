@@ -40,7 +40,14 @@ npm run start:ios:device
 
 ### OpenAPI spec
 
-Documentation for a persistence API is available at <https://ignitegpt.ai/docs>. It is based on the OpenAPI spec located in the [`ignite-gpt-openapi`](ignite-gpt-openapi) folder ([`openapi.yaml`](ignite-gpt-openapi/openapi.yaml), [`paths.yaml`](ignite-gpt-openapi/paths.yaml), and [`schemas.yaml`](ignite-gpt-openapi/schemas.yaml)) and is also available at <https://ignitegpt.ai/openapi.json>.
+Documentation for a persistence API is available at <https://ignitegpt.ai/docs>.
+You can run this locally with:
+
+```sh
+npm run start:docs
+```
+
+It is based on the OpenAPI spec located in the [`ignite-gpt-openapi`](ignite-gpt-openapi) folder ([`openapi.yaml`](ignite-gpt-openapi/openapi.yaml), [`paths.yaml`](ignite-gpt-openapi/paths.yaml), and [`schemas.yaml`](ignite-gpt-openapi/schemas.yaml)) and is also available at <https://ignitegpt.ai/openapi.json>.
 
 ### Update app code from OpenAPI spec
 
