@@ -2,6 +2,8 @@
 
 IgniteGPT is a cross-platform AI application that adds powerful features to ChatGPT.
 
+See https://ignitegpt.ai for a hosted version of the webapp.
+
 ## Installation
 
 ```sh
@@ -38,7 +40,7 @@ npm run start:ios:device
 
 ### OpenAPI spec
 
-An OpenAPI spec for a persistence API is located in the [`ignite-gpt-openapi`](ignite-gpt-openapi) folder: [`openapi.yaml`](ignite-gpt-openapi/openapi.yaml), [`paths.yaml`](ignite-gpt-openapi/paths.yaml), and [`schemas.yaml`](ignite-gpt-openapi/schemas.yaml).
+Documentation for a persistence API is available at <https://ignitegpt.ai/docs>. It is based on the OpenAPI spec located in the [`ignite-gpt-openapi`](ignite-gpt-openapi) folder ([`openapi.yaml`](ignite-gpt-openapi/openapi.yaml), [`paths.yaml`](ignite-gpt-openapi/paths.yaml), and [`schemas.yaml`](ignite-gpt-openapi/schemas.yaml)) and is also available at <https://ignitegpt.ai/openapi.json>.
 
 ### Update app code from OpenAPI spec
 
