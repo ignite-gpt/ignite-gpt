@@ -13,14 +13,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { completion } from '../lib/openai'
 import { useAppSelector } from '../store/hooks'
 
-export default function ChatInput({ onResponse }) {
+export default function ChatInput({ onResponse, onSendMessage }) {
   const openAiApiKey = useAppSelector((state) => state.env?.openAiApiKey)
   const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const insets = useSafeAreaInsets()
 
-  const onPress = async () => {
+  const sendMessage = async () => {
+    onSendMessage({ text: inputValue })
     setError('')
     setIsLoading(true)
     try {
@@ -28,7 +29,8 @@ export default function ChatInput({ onResponse }) {
         openAiApiKey,
         prompt: inputValue,
       })
-      onResponse(response)
+      onResponse({ text: response })
+      setInputValue('')
     } catch (e) {
       setError(e.message)
     }
@@ -54,14 +56,20 @@ export default function ChatInput({ onResponse }) {
         width="100%"
       >
         <Input
+          backgroundColor="white"
           flexGrow={1}
           onChangeText={(text) => setInputValue(text)}
+          onSubmitEditing={sendMessage}
           placeholder="Send a message"
           size="2xl"
           value={inputValue}
-          backgroundColor="white"
         />
-        <Button isLoading={isLoading} onPress={onPress} variant="solid">
+        <Button
+          isDisabled={!inputValue}
+          isLoading={isLoading}
+          onPress={sendMessage}
+          variant="solid"
+        >
           <ArrowUpIcon size={6} color="white" />
         </Button>
       </Row>
