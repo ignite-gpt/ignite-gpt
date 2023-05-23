@@ -79,6 +79,7 @@
         required: true
         schema:
           type: string
+          format: uuid
     responses:
       '200':
         description: A tree
@@ -101,6 +102,7 @@
         required: true
         schema:
           type: string
+          format: uuid
     requestBody:
       content:
         application/json:
@@ -128,6 +130,7 @@
         required: true
         schema:
           type: string
+          format: uuid
     responses:
       '204':
         description: Tree successfully deleted
@@ -147,6 +150,7 @@
         required: true
         schema:
           type: string
+          format: uuid
       - name: page[number]
         in: query
         description: Page number for pagination
@@ -195,6 +199,7 @@
         required: true
         schema:
           type: string
+          format: uuid
     requestBody:
       content:
         application/json:
@@ -228,11 +233,13 @@
         required: true
         schema:
           type: string
+          format: uuid
       - name: msgId
         in: path
         required: true
         schema:
           type: string
+          format: uuid
     requestBody:
       content:
         application/json:
@@ -260,11 +267,13 @@
         required: true
         schema:
           type: string
+          format: uuid
       - name: msgId
         in: path
         required: true
         schema:
           type: string
+          format: uuid
     responses:
       '204':
         description: Message successfully deleted

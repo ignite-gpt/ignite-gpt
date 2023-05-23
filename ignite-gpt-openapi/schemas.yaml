@@ -3,6 +3,7 @@ TreeResource:
   properties:
     id:
       type: string
+      format: uuid
     type:
       type: string
       enum: [tree]
@@ -25,6 +26,7 @@ TreeAttributes:
       format: date-time
     owner:
       type: string
+      format: uuid
     isPrivate:
       type: boolean
     isDeleted:
@@ -43,6 +45,7 @@ CreateTreeAttributes:
       type: boolean
     fork:
       type: string
+      format: uuid
 UpdateTreeAttributes:
   type: object
   properties:
@@ -93,6 +96,7 @@ CreateTreeRequest:
       properties:
         id:
           type: string
+          format: uuid
         type:
           type: string
           enum: [tree]
@@ -112,6 +116,7 @@ UpdateTreeRequest:
       properties:
         id:
           type: string
+          format: uuid
         type:
           type: string
           enum: [tree]
@@ -122,6 +127,7 @@ MessageResource:
   properties:
     id:
       type: string
+      format: uuid
     type:
       type: string
       enum: [message]
@@ -140,6 +146,7 @@ MessageAttributes:
       type: boolean
     parent:
       type: string
+      format: uuid
     role:
       type: string
     content:
@@ -152,6 +159,7 @@ CreateMessageAttributes:
   properties:
     parent:
       type: string
+      format: uuid
     role:
       type: string
     content:
@@ -161,6 +169,7 @@ UpdateMessageAttributes:
   properties:
     parent:
       type: string
+      format: uuid
     role:
       type: string
     content:
@@ -196,6 +205,7 @@ CreateMessageRequest:
       properties:
         id:
           type: string
+          format: uuid
         type:
           type: string
           enum: [message]
@@ -215,6 +225,7 @@ UpdateMessageRequest:
       properties:
         id:
           type: string
+          format: uuid
         type:
           type: string
           enum: [message]
@@ -227,6 +238,7 @@ Error:
   properties:
     id:
       type: string
+      format: uuid
     links:
       type: object
       properties:
