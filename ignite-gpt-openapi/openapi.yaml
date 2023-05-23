@@ -4,7 +4,7 @@ info:
   description: An API for interacting with LLMs
   version: 0.1.0
 servers:
-  - url: https://your-api-url.com/api/v1
+  - url: https://api.ignitegpt.com/v1
 paths:
   $ref: './paths.yaml'
 components:
