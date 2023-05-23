@@ -10,7 +10,7 @@ import {
 import { useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import { completion } from '../lib/openAi'
+import { completion } from '../lib/openai'
 import { useAppSelector } from '../store/hooks'
 
 export default function ChatInput({ onResponse }) {
