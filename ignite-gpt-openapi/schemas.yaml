@@ -106,9 +106,12 @@ UpdateTreeRequest:
     data:
       type: object
       required:
+        - id
         - type
         - attributes
       properties:
+        id:
+          type: string
         type:
           type: string
           enum: [tree]
@@ -206,9 +209,12 @@ UpdateMessageRequest:
     data:
       type: object
       required:
+        - id
         - type
         - attributes
       properties:
+        id:
+          type: string
         type:
           type: string
           enum: [message]
