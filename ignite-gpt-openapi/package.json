@@ -1,8 +1,10 @@
 {
   "name": "ignite-gpt-openapi",
   "scripts": {
+    "start": "redocly preview-docs openapi.yaml",
     "generate:openapi": "redocly bundle openapi.yaml --output openapi.json",
-    "build:docs": "redocly build-docs openapi.yaml --output docs/index.html"
+    "build:docs": "redocly build-docs openapi.yaml --output docs/index.html",
+    "lint": "redocly lint openapi.yaml"
   },
   "devDependencies": {
     "@redocly/cli": "^1.0.0-beta.126"
