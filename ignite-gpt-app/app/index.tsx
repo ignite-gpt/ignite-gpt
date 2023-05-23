@@ -2,6 +2,7 @@ import { Center, Column, Flex, Text } from 'native-base'
 import { useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
+import Logo from '../assets/logo-grey.svg'
 import ApiKeyModal from '../components/ApiKeyModal'
 import AppBar from '../components/AppBar'
 import ChatInput from '../components/ChatInput'
@@ -19,11 +20,12 @@ export default function Page() {
         <Column space={1} width="100%">
           {!response && (
             <Center flexGrow={1}>
+              <Logo width={90} height={90} />
               <Text
                 color="muted.400"
                 fontSize="5xl"
                 fontWeight="500"
-                margin={8}
+                margin={4}
               >
                 IgniteGPT
               </Text>
