@@ -13,6 +13,7 @@
     "start": "npm-run-all -p -l start:**",
     "ios": "cd ignite-gpt-app && npm run ios",
     "ios:device": "cd ignite-gpt-app && npm run ios:device",
+    "build:web": "cd ignite-gpt-app && npm run build:web",
     "generate:openapi": "cd ignite-gpt-openapi && npm run generate:openapi",
     "generate:query": "cd ignite-gpt-app && npm run generate:query",
     "format:app": "cd ignite-gpt-app && npm run format",

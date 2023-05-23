@@ -7,6 +7,7 @@
     "ios:device": "expo run:ios --device",
     "android": "expo run:android",
     "web": "expo start --web --port=19000",
+    "build:web": "expo export --platform web",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write . && eslint --fix .",
     "test": "jest",
