@@ -31,6 +31,8 @@ jobs:
           node-version-file: '.nvmrc'
       - run: npm ci
       - run: npm run build:web
+      - run: npm run generate:openapi
+      - run: cp ignite-gpt-openapi/openapi.json ignite-gpt-app/dist/openapi.json
       - uses: actions/configure-pages@v3
       - uses: actions/upload-pages-artifact@v1
         with:
