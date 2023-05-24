@@ -11,7 +11,7 @@
     "desktop:apply": "git apply ignite-gpt-desktop/diff/main.ts.diff",
     "start:desktop": "npm run desktop:apply && trap 'cd electron-react-boilerplate && git reset --hard' INT TERM && (cd electron-react-boilerplate && npm start)",
     "start": "npm-run-all -p -l start:**",
-    "ios": "cd ignite-gpt-app && npm run ios",
+    "ios": "cd ignite-gpt-app && npm run start:ios",
     "ios:device": "cd ignite-gpt-app && npm run ios:device",
     "build:web": "cd ignite-gpt-app && npm run build:web",
     "start:docs": "cd ignite-gpt-openapi && npm start",
