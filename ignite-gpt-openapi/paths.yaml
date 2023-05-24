@@ -252,6 +252,15 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/MessageResponse'
+        x-example:
+          application/json:
+            data:
+              id: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+              type: message
+              attributes:
+                parent: "69b74bc9-2b5a-4d6e-8a9e-9b8f1e9e45ca"
+                role: "system"
+                content: "You are a bot that says 'Hello, world!'"
       default:
         description: Unexpected errors
         content:
