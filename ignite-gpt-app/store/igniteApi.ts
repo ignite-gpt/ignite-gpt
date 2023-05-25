@@ -179,8 +179,8 @@ export type PaginationLinks = {
   self?: string
   first?: string
   last?: string
-  prev?: string
-  next?: string
+  prev?: any
+  next?: any
 }
 export type TreesResponse = {
   data: TreeResource[]
@@ -231,7 +231,7 @@ export type MessageAttributes = {
   createdAt?: string
   updatedAt?: string
   isDeleted?: boolean
-  parent?: string
+  parent?: any
   role?: string
   content?: string
   tokens?: number
