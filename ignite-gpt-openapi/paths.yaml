@@ -36,6 +36,44 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/TreesResponse'
+            example:
+              data:
+                - id: d1076e5e-603e-4eb8-9b2e-82b36414a8dd
+                  type: tree
+                  attributes:
+                    name: My Tree
+                    description: An example tree
+                    createdAt: 2020-01-01T00:00:00.000Z
+                    updatedAt: 2020-01-01T00:00:00.000Z
+                    owner: 6ca0bd34-0f36-4670-8e1e-574011ee9ba4
+                    isPrivate: false
+                    isDeleted: false
+                    forks: 0
+                  relationships:
+                    messages:
+                      links:
+                        related: /trees/d1076e5e-603e-4eb8-9b2e-82b36414a8dd/messages
+                - id: 23e28116-0696-4e2c-a606-dcc723e1a3cc
+                  type: tree
+                  attributes:
+                    name: My Favorite Tree
+                    description: Another example tree
+                    createdAt: 2020-01-01T00:00:00.000Z
+                    updatedAt: 2020-01-01T00:00:00.000Z
+                    owner: 6ca0bd34-0f36-4670-8e1e-574011ee9ba4
+                    isPrivate: false
+                    isDeleted: false
+                    forks: 0
+                  relationships:
+                    messages:
+                      links:
+                        related: /trees/23e28116-0696-4e2c-a606-dcc723e1a3cc/messages
+              links:
+                self: /trees?page[number]=1&page[size]=10
+                first: /trees?page[number]=1&page[size]=10
+                last: /trees?page[number]=1&page[size]=10
+                prev: null
+                next: null
       default:
         description: Unexpected errors
         content:
@@ -51,6 +89,13 @@
         application/json:
           schema:
             $ref: './schemas.yaml#/CreateTreeRequest'
+          example:
+            data:
+              type: tree
+              attributes:
+                name: My Favorite Tree
+                description: Another example tree
+                isPrivate: false
     responses:
       '201':
         description: A created tree
@@ -63,6 +108,23 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/TreeResponse'
+            example:
+              data:
+                id: 23e28116-0696-4e2c-a606-dcc723e1a3cc
+                type: tree
+                attributes:
+                  name: My Favorite Tree
+                  description: Another example tree
+                  createdAt: 2020-01-01T00:00:00.000Z
+                  updatedAt: 2020-01-01T00:00:00.000Z
+                  owner: 6ca0bd34-0f36-4670-8e1e-574011ee9ba4
+                  isPrivate: false
+                  isDeleted: false
+                  forks: 0
+                relationships:
+                  messages:
+                    links:
+                      related: /trees/23e28116-0696-4e2c-a606-dcc723e1a3cc/messages
       default:
         description: Unexpected errors
         content:
@@ -87,6 +149,23 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/TreeResponse'
+            example:
+              data:
+                id: d1076e5e-603e-4eb8-9b2e-82b36414a8dd
+                type: tree
+                attributes:
+                  name: My Tree
+                  description: An example tree
+                  createdAt: 2020-01-01T00:00:00.000Z
+                  updatedAt: 2020-01-01T00:00:00.000Z
+                  owner: 6ca0bd34-0f36-4670-8e1e-574011ee9ba4
+                  isPrivate: false
+                  isDeleted: false
+                  forks: 0
+                relationships:
+                  messages:
+                    links:
+                      related: /trees/d1076e5e-603e-4eb8-9b2e-82b36414a8dd/messages
       default:
         description: Unexpected errors
         content:
@@ -108,6 +187,14 @@
         application/json:
           schema:
             $ref: './schemas.yaml#/UpdateTreeRequest'
+          example:
+            data:
+              id: d1076e5e-603e-4eb8-9b2e-82b36414a8dd
+              type: tree
+              attributes:
+                name: My Tree
+                description: An example tree
+                isPrivate: false
     responses:
       '200':
         description: An updated tree
@@ -115,6 +202,23 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/TreeResponse'
+            example:
+              data:
+                id: d1076e5e-603e-4eb8-9b2e-82b36414a8dd
+                type: tree
+                attributes:
+                  name: My Tree
+                  description: An example tree
+                  createdAt: 2020-01-01T00:00:00.000Z
+                  updatedAt: 2020-01-01T00:00:00.000Z
+                  owner: 6ca0bd34-0f36-4670-8e1e-574011ee9ba4
+                  isPrivate: false
+                  isDeleted: false
+                  forks: 0
+                relationships:
+                  messages:
+                    links:
+                      related: /trees/d1076e5e-603e-4eb8-9b2e-82b36414a8dd/messages
       default:
         description: Unexpected errors
         content:
@@ -184,6 +288,34 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/MessagesResponse'
+            example:
+              data:
+                - id: 99fb821d-0ef4-46d1-bcdc-c7af9fee35d8
+                  type: message
+                  attributes:
+                    createdAt: 2021-01-01T00:00:00Z
+                    updatedAt: 2021-01-01T00:00:00Z
+                    isDeleted: false
+                    parent: null
+                    role: user
+                    content: Hello, world!
+                    tokens: 2
+                - id: cfda88f6-b377-457c-abd0-2b0d7b3dcbf1
+                  type: message
+                  attributes:
+                    createdAt: 2021-01-01T00:00:00Z
+                    updatedAt: 2021-01-01T00:00:00Z
+                    isDeleted: false
+                    parent: 99fb821d-0ef4-46d1-bcdc-c7af9fee35d8
+                    role: assistant
+                    content: Hi, I'm a bot!
+                    tokens: 4
+              links:
+                self: /trees/d1076e5e-603e-4eb8-9b2e-82b36414a8dd/messages&page[number]=1&page[size]=10
+                first: /trees/d1076e5e-603e-4eb8-9b2e-82b36414a8dd/messages&page[number]=1&page[size]=10
+                last: /trees/d1076e5e-603e-4eb8-9b2e-82b36414a8dd/messages&page[number]=1&page[size]=10
+                prev: null
+                next: null
       default:
         description: Unexpected errors
         content:
@@ -205,6 +337,13 @@
         application/json:
           schema:
             $ref: './schemas.yaml#/CreateMessageRequest'
+          example:
+            data:
+              type: message
+              attributes:
+                parent: 99fb821d-0ef4-46d1-bcdc-c7af9fee35d8
+                role: user
+                content: Hello, world!
     responses:
       '201':
         description: A created message
@@ -217,6 +356,18 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/MessageResponse'
+            example:
+              data:
+                id: cfda88f6-b377-457c-ab8d-149bcfa94a20
+                type: message
+                attributes:
+                  createdAt: 2021-01-01T00:00:00Z
+                  updatedAt: 2021-01-01T00:00:00Z
+                  isDeleted: false
+                  parent: 99fb821d-0ef4-46d1-bcdc-c7af9fee35d8
+                  role: user
+                  content: Hello, world!
+                  tokens: 2
       default:
         description: Unexpected errors
         content:
@@ -245,6 +396,14 @@
         application/json:
           schema:
             $ref: './schemas.yaml#/UpdateMessageRequest'
+          example:
+            data:
+              id: f47ac10b-58cc-4372-a567-0e02b2c3d479
+              type: message
+              attributes:
+                parent: 69b74bc9-2b5a-4d6e-8a9e-9b8f1e9e45ca
+                role: system
+                content: You are a bot that says 'Hello, world!'
     responses:
       '200':
         description: An updated message
@@ -252,15 +411,18 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/MessageResponse'
-        x-example:
-          application/json:
-            data:
-              id: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
-              type: message
-              attributes:
-                parent: "69b74bc9-2b5a-4d6e-8a9e-9b8f1e9e45ca"
-                role: "system"
-                content: "You are a bot that says 'Hello, world!'"
+            example:
+              data:
+                id: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                type: message
+                attributes:
+                  createdAt: 2021-01-01T00:00:00Z
+                  updatedAt: 2021-01-01T00:00:00Z
+                  isDeleted: false
+                  parent: 69b74bc9-2b5a-4d6e-8a9e-9b8f1e9e45ca
+                  role: system
+                  content: You are a bot that says 'Hello, world!'
+                  tokens: 8
       default:
         description: Unexpected errors
         content:
