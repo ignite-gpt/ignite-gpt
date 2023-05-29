@@ -1,23 +1,20 @@
 import { Center, Column, Flex, Text } from 'native-base'
 import { useState } from 'react'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import Logo from '../assets/logo-medium.svg'
 import ApiKeyModal from '../components/ApiKeyModal'
-import AppBar from '../components/AppBar'
 import ChatCard from '../components/ChatCard'
 import ChatInput from '../components/ChatInput'
+import Chrome from '../components/Chrome'
 import { useAppSelector } from '../store/hooks'
 
 export default function Page() {
   const openAiApiKey = useAppSelector((state) => state.env?.openAiApiKey)
   const [response, setResponse] = useState('')
   const [message, setMessage] = useState('')
-  const insets = useSafeAreaInsets()
 
   return (
-    <Column height="100%" width="100%" paddingBottom={insets.bottom}>
-      <AppBar />
+    <Chrome>
       <Flex direction="row" flexGrow={1} padding={4}>
         <Column space={1} width="100%">
           {!response && !message && (
@@ -47,6 +44,6 @@ export default function Page() {
         />
       )}
       <ApiKeyModal />
-    </Column>
+    </Chrome>
   )
 }

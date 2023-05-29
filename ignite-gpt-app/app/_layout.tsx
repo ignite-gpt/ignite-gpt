@@ -1,8 +1,8 @@
+import { Stack } from 'expo-router'
 import { extendTheme, NativeBaseProvider } from 'native-base'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import Chrome from '../components/Chrome'
 import { persistor, store } from '../store/store'
 
 const theme = extendTheme({
@@ -27,7 +27,7 @@ export default function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NativeBaseProvider theme={theme}>
-          <Chrome />
+          <Stack />
         </NativeBaseProvider>
       </PersistGate>
     </Provider>
