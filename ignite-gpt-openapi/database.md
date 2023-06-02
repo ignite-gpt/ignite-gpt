@@ -40,7 +40,7 @@ WITH CHECK ("userId" = auth.uid())
 ```sql
 create table
   public.messages (
-    id uuid not null,
+    id uuid not null default gen_random_uuid (),
     treeId uuid not null,
     parent uuid null,
     content text not null,
@@ -49,7 +49,6 @@ create table
     isDeleted boolean not null default false,
     createdAt timestamp with time zone not null default now(),
     updatedAt timestamp with time zone not null default now(),
-    userId uuid not null default auth.uid (),
     isTemplate boolean not null default false,
     templateId uuid null,
     constraint messages_pkey primary key (id),
@@ -71,9 +70,10 @@ USING (EXISTS ( SELECT 1 FROM "public"."trees" WHERE "trees"."id" = "messages"."
 ```
 
 ```sql
-CREATE POLICY "Write access for a user's messages" ON "public"."messages"
+CREATE POLICY "Write access for a user's messages" ON "messages"
 AS PERMISSIVE FOR ALL
 TO authenticated
-USING ("userId" = auth.uid())
-WITH CHECK ("userId" = auth.uid())
+USING (EXISTS ( SELECT 1 FROM "trees" WHERE "trees"."id" = "messages"."treeId" AND "trees"."userId" = auth.uid() ))
+WITH CHECK (EXISTS ( SELECT 1 FROM "trees" WHERE "trees"."id" = "messages"."treeId" AND "trees"."userId" = auth.uid() ))
+
 ```
