@@ -75,5 +75,4 @@ AS PERMISSIVE FOR ALL
 TO authenticated
 USING (EXISTS ( SELECT 1 FROM "trees" WHERE "trees"."id" = "messages"."treeId" AND "trees"."userId" = auth.uid() ))
 WITH CHECK (EXISTS ( SELECT 1 FROM "trees" WHERE "trees"."id" = "messages"."treeId" AND "trees"."userId" = auth.uid() ))
-
 ```

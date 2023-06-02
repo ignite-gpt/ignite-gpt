@@ -1,9 +1,6 @@
 import { api } from './emptyApi'
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
-    get: build.query<GetApiResponse, GetApiArg>({
-      query: () => ({ url: `/` }),
-    }),
     getTrees: build.query<GetTreesApiResponse, GetTreesApiArg>({
       query: (queryArg) => ({
         url: `/trees`,
@@ -93,7 +90,6 @@ const injectedRtkApi = api.injectEndpoints({
           isDeleted: queryArg.isDeleted,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
-          userId: queryArg.userId,
           isTemplate: queryArg.isTemplate,
           templateId: queryArg.templateId,
           select: queryArg.select,
@@ -130,7 +126,6 @@ const injectedRtkApi = api.injectEndpoints({
           isDeleted: queryArg.isDeleted,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
-          userId: queryArg.userId,
           isTemplate: queryArg.isTemplate,
           templateId: queryArg.templateId,
         },
@@ -155,7 +150,6 @@ const injectedRtkApi = api.injectEndpoints({
           isDeleted: queryArg.isDeleted,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
-          userId: queryArg.userId,
           isTemplate: queryArg.isTemplate,
           templateId: queryArg.templateId,
         },
@@ -165,8 +159,6 @@ const injectedRtkApi = api.injectEndpoints({
   overrideExisting: false,
 })
 export { injectedRtkApi as enhancedApi }
-export type GetApiResponse = unknown
-export type GetApiArg = void
 export type GetTreesApiResponse =
   /** status 200 OK */
   Trees[] | /** status 206 Partial Content */ undefined
@@ -252,7 +244,6 @@ export type GetMessagesApiArg = {
   isDeleted?: string
   createdAt?: string
   updatedAt?: string
-  userId?: string
   isTemplate?: string
   templateId?: string
   /** Filtering Columns */
@@ -295,7 +286,6 @@ export type DeleteMessagesApiArg = {
   isDeleted?: string
   createdAt?: string
   updatedAt?: string
-  userId?: string
   isTemplate?: string
   templateId?: string
   /** Preference */
@@ -312,7 +302,6 @@ export type PatchMessagesApiArg = {
   isDeleted?: string
   createdAt?: string
   updatedAt?: string
-  userId?: string
   isTemplate?: string
   templateId?: string
   /** Preference */
@@ -341,12 +330,10 @@ export type Messages = {
   isDeleted: boolean
   createdAt: string
   updatedAt: string
-  userId: string
   isTemplate: boolean
   templateId?: string
 }
 export const {
-  useGetQuery,
   useGetTreesQuery,
   usePostTreesMutation,
   useDeleteTreesMutation,
