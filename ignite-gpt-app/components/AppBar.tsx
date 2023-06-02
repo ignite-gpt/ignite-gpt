@@ -1,12 +1,6 @@
-import { Stack } from 'expo-router'
-import {
-  Badge,
-  HamburgerIcon,
-  Heading,
-  Row,
-  ThreeDotsIcon,
-  useTheme,
-} from 'native-base'
+import { Stack, Link } from 'expo-router'
+import { Menu, UserCircle } from 'iconoir-react-native'
+import { Badge, Heading, IconButton, Row, View, useTheme } from 'native-base'
 import { Platform } from 'react-native'
 
 export default function AppBar({ title = 'IgniteGPT' }) {
@@ -18,21 +12,25 @@ export default function AppBar({ title = 'IgniteGPT' }) {
       options={{
         title,
         headerLeft: () => (
-          <HamburgerIcon
-            color={colors.white}
-            paddingLeft={!isWeb ? 0 : 4}
-            size="xl"
-          />
+          <View paddingLeft={!isWeb ? 0 : 2}>
+            <IconButton
+              icon={<Menu color={colors.white} strokeWidth={1.8} />}
+              variant="outline"
+            />
+          </View>
         ),
         headerStyle: {
           backgroundColor: colors.primary[600],
         },
         headerRight: () => (
-          <ThreeDotsIcon
-            color={colors.white}
-            paddingRight={!isWeb ? 0 : 4}
-            size="md"
-          />
+          <View paddingRight={!isWeb ? 0 : 2}>
+            <Link href="/settings">
+              <IconButton
+                icon={<UserCircle color={colors.white} strokeWidth={1.8} />}
+                variant="outline"
+              />
+            </Link>
+          </View>
         ),
         headerTintColor: colors.white,
         headerTitle: ({ children }) => (
