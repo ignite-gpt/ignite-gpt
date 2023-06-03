@@ -18,8 +18,8 @@
     "build:web": "cd ignite-gpt-app && npm run build:web",
     "start:docs": "cd ignite-gpt-openapi && npm start",
     "build:docs": "cd ignite-gpt-openapi && npm run build:docs",
-    "generate:openapi": "cd ignite-gpt-openapi && npm run generate:openapi",
-    "generate:query": "cd ignite-gpt-app && npm run generate:query",
+    "generate:openapi": "cd ignite-gpt-openapi && npm run download:openapi && npm run generate:openapi",
+    "generate:query": "cd ignite-gpt-app && npm run generate:query && npm run format",
     "format:app": "cd ignite-gpt-app && npm run format",
     "generate": "npm-run-all -s -l generate:** format:app"
   },

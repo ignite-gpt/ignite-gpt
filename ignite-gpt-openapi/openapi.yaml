@@ -4,16 +4,11 @@ info:
   description: An API for interacting with LLMs
   version: 0.1.0
 servers:
-  - url: https://api.ignitegpt.com/v1
+  - url: https://api.ignitegpt.com/rest/v1
 paths:
-  $ref: './paths.yaml'
+  /trees:
+    $ref: './postgrest.yaml#/paths/~1trees'
+  /messages:
+    $ref: './postgrest.yaml#/paths/~1messages'
 components:
-  schemas:
-    $ref: './schemas.yaml'
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
+  $ref: './postgrest.yaml#/components'

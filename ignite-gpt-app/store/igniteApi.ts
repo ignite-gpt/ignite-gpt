@@ -4,76 +4,155 @@ const injectedRtkApi = api.injectEndpoints({
     getTrees: build.query<GetTreesApiResponse, GetTreesApiArg>({
       query: (queryArg) => ({
         url: `/trees`,
+        headers: {
+          Range: queryArg.range,
+          'Range-Unit': queryArg['Range-Unit'],
+          Prefer: queryArg.prefer,
+        },
         params: {
-          page: queryArg.page,
-          sort: queryArg.sort,
-          filter: queryArg.filter,
+          id: queryArg.id,
+          name: queryArg.name,
+          description: queryArg.description,
+          userId: queryArg.userId,
+          forks: queryArg.forks,
+          isPublic: queryArg.isPublic,
+          isDeleted: queryArg.isDeleted,
+          createdAt: queryArg.createdAt,
+          updatedAt: queryArg.updatedAt,
+          select: queryArg.select,
+          order: queryArg.order,
+          offset: queryArg.offset,
+          limit: queryArg.limit,
         },
       }),
     }),
-    createTree: build.mutation<CreateTreeApiResponse, CreateTreeApiArg>({
+    postTrees: build.mutation<PostTreesApiResponse, PostTreesApiArg>({
       query: (queryArg) => ({
         url: `/trees`,
         method: 'POST',
-        body: queryArg.createTreeRequest,
+        body: queryArg.trees,
+        headers: { Prefer: queryArg.prefer },
+        params: { select: queryArg.select },
       }),
     }),
-    getTree: build.query<GetTreeApiResponse, GetTreeApiArg>({
-      query: (queryArg) => ({ url: `/trees/${queryArg.treeId}` }),
-    }),
-    updateTree: build.mutation<UpdateTreeApiResponse, UpdateTreeApiArg>({
+    deleteTrees: build.mutation<DeleteTreesApiResponse, DeleteTreesApiArg>({
       query: (queryArg) => ({
-        url: `/trees/${queryArg.treeId}`,
-        method: 'PATCH',
-        body: queryArg.updateTreeRequest,
-      }),
-    }),
-    deleteTree: build.mutation<DeleteTreeApiResponse, DeleteTreeApiArg>({
-      query: (queryArg) => ({
-        url: `/trees/${queryArg.treeId}`,
+        url: `/trees`,
         method: 'DELETE',
-      }),
-    }),
-    getTreeMessages: build.query<
-      GetTreeMessagesApiResponse,
-      GetTreeMessagesApiArg
-    >({
-      query: (queryArg) => ({
-        url: `/trees/${queryArg.treeId}/messages`,
+        headers: { Prefer: queryArg.prefer },
         params: {
-          page: queryArg.page,
-          sort: queryArg.sort,
-          filter: queryArg.filter,
+          id: queryArg.id,
+          name: queryArg.name,
+          description: queryArg.description,
+          userId: queryArg.userId,
+          forks: queryArg.forks,
+          isPublic: queryArg.isPublic,
+          isDeleted: queryArg.isDeleted,
+          createdAt: queryArg.createdAt,
+          updatedAt: queryArg.updatedAt,
         },
       }),
     }),
-    createTreeMessage: build.mutation<
-      CreateTreeMessageApiResponse,
-      CreateTreeMessageApiArg
-    >({
+    patchTrees: build.mutation<PatchTreesApiResponse, PatchTreesApiArg>({
       query: (queryArg) => ({
-        url: `/trees/${queryArg.treeId}/messages`,
-        method: 'POST',
-        body: queryArg.createMessageRequest,
-      }),
-    }),
-    updateTreeMessage: build.mutation<
-      UpdateTreeMessageApiResponse,
-      UpdateTreeMessageApiArg
-    >({
-      query: (queryArg) => ({
-        url: `/trees/${queryArg.treeId}/messages/${queryArg.msgId}`,
+        url: `/trees`,
         method: 'PATCH',
-        body: queryArg.updateMessageRequest,
+        body: queryArg.trees,
+        headers: { Prefer: queryArg.prefer },
+        params: {
+          id: queryArg.id,
+          name: queryArg.name,
+          description: queryArg.description,
+          userId: queryArg.userId,
+          forks: queryArg.forks,
+          isPublic: queryArg.isPublic,
+          isDeleted: queryArg.isDeleted,
+          createdAt: queryArg.createdAt,
+          updatedAt: queryArg.updatedAt,
+        },
       }),
     }),
-    deleteTreeMessage: build.mutation<
-      DeleteTreeMessageApiResponse,
-      DeleteTreeMessageApiArg
+    getMessages: build.query<GetMessagesApiResponse, GetMessagesApiArg>({
+      query: (queryArg) => ({
+        url: `/messages`,
+        headers: {
+          Range: queryArg.range,
+          'Range-Unit': queryArg['Range-Unit'],
+          Prefer: queryArg.prefer,
+        },
+        params: {
+          id: queryArg.id,
+          treeId: queryArg.treeId,
+          parent: queryArg.parent,
+          content: queryArg.content,
+          tokens: queryArg.tokens,
+          role: queryArg.role,
+          isDeleted: queryArg.isDeleted,
+          createdAt: queryArg.createdAt,
+          updatedAt: queryArg.updatedAt,
+          isTemplate: queryArg.isTemplate,
+          templateId: queryArg.templateId,
+          select: queryArg.select,
+          order: queryArg.order,
+          offset: queryArg.offset,
+          limit: queryArg.limit,
+        },
+      }),
+    }),
+    postMessages: build.mutation<PostMessagesApiResponse, PostMessagesApiArg>({
+      query: (queryArg) => ({
+        url: `/messages`,
+        method: 'POST',
+        body: queryArg.messages,
+        headers: { Prefer: queryArg.prefer },
+        params: { select: queryArg.select },
+      }),
+    }),
+    deleteMessages: build.mutation<
+      DeleteMessagesApiResponse,
+      DeleteMessagesApiArg
     >({
       query: (queryArg) => ({
-        url: `/trees/${queryArg.treeId}/messages/${queryArg.msgId}`,
+        url: `/messages`,
         method: 'DELETE',
+        headers: { Prefer: queryArg.prefer },
+        params: {
+          id: queryArg.id,
+          treeId: queryArg.treeId,
+          parent: queryArg.parent,
+          content: queryArg.content,
+          tokens: queryArg.tokens,
+          role: queryArg.role,
+          isDeleted: queryArg.isDeleted,
+          createdAt: queryArg.createdAt,
+          updatedAt: queryArg.updatedAt,
+          isTemplate: queryArg.isTemplate,
+          templateId: queryArg.templateId,
+        },
+      }),
+    }),
+    patchMessages: build.mutation<
+      PatchMessagesApiResponse,
+      PatchMessagesApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/messages`,
+        method: 'PATCH',
+        body: queryArg.messages,
+        headers: { Prefer: queryArg.prefer },
+        params: {
+          id: queryArg.id,
+          treeId: queryArg.treeId,
+          parent: queryArg.parent,
+          content: queryArg.content,
+          tokens: queryArg.tokens,
+          role: queryArg.role,
+          isDeleted: queryArg.isDeleted,
+          createdAt: queryArg.createdAt,
+          updatedAt: queryArg.updatedAt,
+          isTemplate: queryArg.isTemplate,
+          templateId: queryArg.templateId,
+        },
       }),
     }),
   }),
@@ -81,205 +160,186 @@ const injectedRtkApi = api.injectEndpoints({
 })
 export { injectedRtkApi as enhancedApi }
 export type GetTreesApiResponse =
-  /** status 200 A list of trees */ TreesResponse
+  /** status 200 OK */
+  Trees[] | /** status 206 Partial Content */ undefined
 export type GetTreesApiArg = {
-  page?: {
-    number?: number
-    size?: number
-  }
-  /** Comma-separated field names to sort by. Use -<fieldname> for descending order. */
-  sort?: string
-  /** Field to filter by, in the format filter[<fieldname>][<operator>]=<value>. Operators can be eq (equals), gt (greater than), lt (less than), gte (greater than or equals), lte (less than or equals), ne (not equals). */
-  filter?: {
-    [key: string]: {
-      [key: string]: string
-    }
-  }
-}
-export type CreateTreeApiResponse =
-  /** status 201 A created tree */ TreeResponse
-export type CreateTreeApiArg = {
-  createTreeRequest: CreateTreeRequest
-}
-export type GetTreeApiResponse = /** status 200 A tree */ TreeResponse
-export type GetTreeApiArg = {
-  treeId: string
-}
-export type UpdateTreeApiResponse =
-  /** status 200 An updated tree */ TreeResponse
-export type UpdateTreeApiArg = {
-  treeId: string
-  updateTreeRequest: UpdateTreeRequest
-}
-export type DeleteTreeApiResponse =
-  /** status 204 Tree successfully deleted */ undefined
-export type DeleteTreeApiArg = {
-  treeId: string
-}
-export type GetTreeMessagesApiResponse =
-  /** status 200 A list of messages in a tree */ MessagesResponse
-export type GetTreeMessagesApiArg = {
-  treeId: string
-  page?: {
-    number?: number
-    size?: number
-  }
-  /** Comma-separated field names to sort by. Use -<fieldname> for descending order. */
-  sort?: string
-  /** Field to filter by, in the format filter[<fieldname>][<operator>]=<value>. Operators can be eq (equals), gt (greater than), lt (less than), gte (greater than or equals), lte (less than or equals), ne (not equals). */
-  filter?: {
-    [key: string]: {
-      [key: string]: string
-    }
-  }
-}
-export type CreateTreeMessageApiResponse =
-  /** status 201 A created message */ MessageResponse
-export type CreateTreeMessageApiArg = {
-  treeId: string
-  createMessageRequest: CreateMessageRequest
-}
-export type UpdateTreeMessageApiResponse =
-  /** status 200 An updated message */ MessageResponse
-export type UpdateTreeMessageApiArg = {
-  treeId: string
-  msgId: string
-  updateMessageRequest: UpdateMessageRequest
-}
-export type DeleteTreeMessageApiResponse =
-  /** status 204 Message successfully deleted */ undefined
-export type DeleteTreeMessageApiArg = {
-  treeId: string
-  msgId: string
-}
-export type TreeAttributes = {
+  id?: string
   name?: string
   description?: string
+  userId?: string
+  forks?: string
+  isPublic?: string
+  isDeleted?: string
   createdAt?: string
   updatedAt?: string
-  owner?: string
-  isPrivate?: boolean
-  isDeleted?: boolean
-  forks?: number
+  /** Filtering Columns */
+  select?: string
+  /** Ordering */
+  order?: string
+  /** Limiting and Pagination */
+  range?: string
+  /** Limiting and Pagination */
+  'Range-Unit'?: string
+  /** Limiting and Pagination */
+  offset?: string
+  /** Limiting and Pagination */
+  limit?: string
+  /** Preference */
+  prefer?: 'count=none'
 }
-export type TreeRelationships = {
-  messages?: {
-    links?: {
-      related?: string
-    }
-  }
+export type PostTreesApiResponse = unknown
+export type PostTreesApiArg = {
+  /** Filtering Columns */
+  select?: string
+  /** Preference */
+  prefer?:
+    | 'return=representation'
+    | 'return=minimal'
+    | 'return=none'
+    | 'resolution=ignore-duplicates'
+    | 'resolution=merge-duplicates'
+  /** trees */
+  trees: Trees
 }
-export type TreeResource = {
+export type DeleteTreesApiResponse = unknown
+export type DeleteTreesApiArg = {
   id?: string
-  type?: 'tree'
-  attributes?: TreeAttributes
-  relationships?: TreeRelationships
-}
-export type PaginationLinks = {
-  self?: string
-  first?: string
-  last?: string
-  prev?: string
-  next?: string
-}
-export type TreesResponse = {
-  data: TreeResource[]
-  links?: PaginationLinks
-}
-export type Error = {
-  id?: string
-  links?: {
-    about?: string
-  }
-  status?: string
-  code?: string
-  title?: string
-  detail: string
-}
-export type ErrorsResponse = {
-  errors: Error[]
-}
-export type TreeResponse = {
-  data: TreeResource
-}
-export type CreateTreeAttributes = {
   name?: string
   description?: string
-  isPrivate?: boolean
-  fork?: string
-}
-export type CreateTreeRequest = {
-  data: {
-    id?: string
-    type: 'tree'
-    attributes: CreateTreeAttributes
-  }
-}
-export type UpdateTreeAttributes = {
-  name?: string
-  description?: string
-  isPrivate?: boolean
-}
-export type UpdateTreeRequest = {
-  data: {
-    id: string
-    type: 'tree'
-    attributes: UpdateTreeAttributes
-  }
-}
-export type MessageAttributes = {
+  userId?: string
+  forks?: string
+  isPublic?: string
+  isDeleted?: string
   createdAt?: string
   updatedAt?: string
-  isDeleted?: boolean
+  /** Preference */
+  prefer?: 'return=representation' | 'return=minimal' | 'return=none'
+}
+export type PatchTreesApiResponse = unknown
+export type PatchTreesApiArg = {
+  id?: string
+  name?: string
+  description?: string
+  userId?: string
+  forks?: string
+  isPublic?: string
+  isDeleted?: string
+  createdAt?: string
+  updatedAt?: string
+  /** Preference */
+  prefer?: 'return=representation' | 'return=minimal' | 'return=none'
+  /** trees */
+  trees: Trees
+}
+export type GetMessagesApiResponse =
+  /** status 200 OK */
+  Messages[] | /** status 206 Partial Content */ undefined
+export type GetMessagesApiArg = {
+  id?: string
+  treeId?: string
   parent?: string
-  role?: string
   content?: string
+  tokens?: string
+  role?: string
+  isDeleted?: string
+  createdAt?: string
+  updatedAt?: string
+  isTemplate?: string
+  templateId?: string
+  /** Filtering Columns */
+  select?: string
+  /** Ordering */
+  order?: string
+  /** Limiting and Pagination */
+  range?: string
+  /** Limiting and Pagination */
+  'Range-Unit'?: string
+  /** Limiting and Pagination */
+  offset?: string
+  /** Limiting and Pagination */
+  limit?: string
+  /** Preference */
+  prefer?: 'count=none'
+}
+export type PostMessagesApiResponse = unknown
+export type PostMessagesApiArg = {
+  /** Filtering Columns */
+  select?: string
+  /** Preference */
+  prefer?:
+    | 'return=representation'
+    | 'return=minimal'
+    | 'return=none'
+    | 'resolution=ignore-duplicates'
+    | 'resolution=merge-duplicates'
+  /** messages */
+  messages: Messages
+}
+export type DeleteMessagesApiResponse = unknown
+export type DeleteMessagesApiArg = {
+  id?: string
+  treeId?: string
+  parent?: string
+  content?: string
+  tokens?: string
+  role?: string
+  isDeleted?: string
+  createdAt?: string
+  updatedAt?: string
+  isTemplate?: string
+  templateId?: string
+  /** Preference */
+  prefer?: 'return=representation' | 'return=minimal' | 'return=none'
+}
+export type PatchMessagesApiResponse = unknown
+export type PatchMessagesApiArg = {
+  id?: string
+  treeId?: string
+  parent?: string
+  content?: string
+  tokens?: string
+  role?: string
+  isDeleted?: string
+  createdAt?: string
+  updatedAt?: string
+  isTemplate?: string
+  templateId?: string
+  /** Preference */
+  prefer?: 'return=representation' | 'return=minimal' | 'return=none'
+  /** messages */
+  messages: Messages
+}
+export type Trees = {
+  id: string
+  name?: string
+  description?: string
+  userId: string
+  forks: number
+  isPublic: boolean
+  isDeleted: boolean
+  createdAt: string
+  updatedAt: string
+}
+export type Messages = {
+  id: string
+  treeId: string
+  parent?: string
+  content: string
   tokens?: number
-}
-export type MessageResource = {
-  id?: string
-  type?: 'message'
-  attributes?: MessageAttributes
-}
-export type MessagesResponse = {
-  data: MessageResource[]
-  links?: PaginationLinks
-}
-export type MessageResponse = {
-  data: MessageResource
-}
-export type CreateMessageAttributes = {
-  parent?: string
   role?: string
-  content?: string
-}
-export type CreateMessageRequest = {
-  data: {
-    id?: string
-    type: 'message'
-    attributes: CreateMessageAttributes
-  }
-}
-export type UpdateMessageAttributes = {
-  parent?: string
-  role?: string
-  content?: string
-}
-export type UpdateMessageRequest = {
-  data: {
-    id: string
-    type: 'message'
-    attributes: UpdateMessageAttributes
-  }
+  isDeleted: boolean
+  createdAt: string
+  updatedAt: string
+  isTemplate: boolean
+  templateId?: string
 }
 export const {
   useGetTreesQuery,
-  useCreateTreeMutation,
-  useGetTreeQuery,
-  useUpdateTreeMutation,
-  useDeleteTreeMutation,
-  useGetTreeMessagesQuery,
-  useCreateTreeMessageMutation,
-  useUpdateTreeMessageMutation,
-  useDeleteTreeMessageMutation,
+  usePostTreesMutation,
+  useDeleteTreesMutation,
+  usePatchTreesMutation,
+  useGetMessagesQuery,
+  usePostMessagesMutation,
+  useDeleteMessagesMutation,
+  usePatchMessagesMutation,
 } = injectedRtkApi
