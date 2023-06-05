@@ -23,9 +23,12 @@ paths:
         - $ref: "#/components/parameters/rowFilter.trees.userId"
         - $ref: "#/components/parameters/rowFilter.trees.forks"
         - $ref: "#/components/parameters/rowFilter.trees.isPublic"
-        - $ref: "#/components/parameters/rowFilter.trees.isDeleted"
         - $ref: "#/components/parameters/rowFilter.trees.createdAt"
         - $ref: "#/components/parameters/rowFilter.trees.updatedAt"
+        - $ref: "#/components/parameters/rowFilter.trees.forkSourceId"
+        - $ref: "#/components/parameters/rowFilter.trees.settings"
+        - $ref: "#/components/parameters/rowFilter.trees.isTemplate"
+        - $ref: "#/components/parameters/rowFilter.trees.templateId"
         - $ref: "#/components/parameters/select"
         - $ref: "#/components/parameters/order"
         - $ref: "#/components/parameters/range"
@@ -75,9 +78,12 @@ paths:
         - $ref: "#/components/parameters/rowFilter.trees.userId"
         - $ref: "#/components/parameters/rowFilter.trees.forks"
         - $ref: "#/components/parameters/rowFilter.trees.isPublic"
-        - $ref: "#/components/parameters/rowFilter.trees.isDeleted"
         - $ref: "#/components/parameters/rowFilter.trees.createdAt"
         - $ref: "#/components/parameters/rowFilter.trees.updatedAt"
+        - $ref: "#/components/parameters/rowFilter.trees.forkSourceId"
+        - $ref: "#/components/parameters/rowFilter.trees.settings"
+        - $ref: "#/components/parameters/rowFilter.trees.isTemplate"
+        - $ref: "#/components/parameters/rowFilter.trees.templateId"
         - $ref: "#/components/parameters/preferReturn"
       responses:
         "204":
@@ -92,9 +98,12 @@ paths:
         - $ref: "#/components/parameters/rowFilter.trees.userId"
         - $ref: "#/components/parameters/rowFilter.trees.forks"
         - $ref: "#/components/parameters/rowFilter.trees.isPublic"
-        - $ref: "#/components/parameters/rowFilter.trees.isDeleted"
         - $ref: "#/components/parameters/rowFilter.trees.createdAt"
         - $ref: "#/components/parameters/rowFilter.trees.updatedAt"
+        - $ref: "#/components/parameters/rowFilter.trees.forkSourceId"
+        - $ref: "#/components/parameters/rowFilter.trees.settings"
+        - $ref: "#/components/parameters/rowFilter.trees.isTemplate"
+        - $ref: "#/components/parameters/rowFilter.trees.templateId"
         - $ref: "#/components/parameters/preferReturn"
       requestBody:
         $ref: "#/components/requestBodies/trees"
@@ -110,13 +119,9 @@ paths:
         - $ref: "#/components/parameters/rowFilter.messages.treeId"
         - $ref: "#/components/parameters/rowFilter.messages.parent"
         - $ref: "#/components/parameters/rowFilter.messages.content"
-        - $ref: "#/components/parameters/rowFilter.messages.tokens"
         - $ref: "#/components/parameters/rowFilter.messages.role"
-        - $ref: "#/components/parameters/rowFilter.messages.isDeleted"
         - $ref: "#/components/parameters/rowFilter.messages.createdAt"
         - $ref: "#/components/parameters/rowFilter.messages.updatedAt"
-        - $ref: "#/components/parameters/rowFilter.messages.isTemplate"
-        - $ref: "#/components/parameters/rowFilter.messages.templateId"
         - $ref: "#/components/parameters/select"
         - $ref: "#/components/parameters/order"
         - $ref: "#/components/parameters/range"
@@ -164,13 +169,9 @@ paths:
         - $ref: "#/components/parameters/rowFilter.messages.treeId"
         - $ref: "#/components/parameters/rowFilter.messages.parent"
         - $ref: "#/components/parameters/rowFilter.messages.content"
-        - $ref: "#/components/parameters/rowFilter.messages.tokens"
         - $ref: "#/components/parameters/rowFilter.messages.role"
-        - $ref: "#/components/parameters/rowFilter.messages.isDeleted"
         - $ref: "#/components/parameters/rowFilter.messages.createdAt"
         - $ref: "#/components/parameters/rowFilter.messages.updatedAt"
-        - $ref: "#/components/parameters/rowFilter.messages.isTemplate"
-        - $ref: "#/components/parameters/rowFilter.messages.templateId"
         - $ref: "#/components/parameters/preferReturn"
       responses:
         "204":
@@ -183,13 +184,9 @@ paths:
         - $ref: "#/components/parameters/rowFilter.messages.treeId"
         - $ref: "#/components/parameters/rowFilter.messages.parent"
         - $ref: "#/components/parameters/rowFilter.messages.content"
-        - $ref: "#/components/parameters/rowFilter.messages.tokens"
         - $ref: "#/components/parameters/rowFilter.messages.role"
-        - $ref: "#/components/parameters/rowFilter.messages.isDeleted"
         - $ref: "#/components/parameters/rowFilter.messages.createdAt"
         - $ref: "#/components/parameters/rowFilter.messages.updatedAt"
-        - $ref: "#/components/parameters/rowFilter.messages.isTemplate"
-        - $ref: "#/components/parameters/rowFilter.messages.templateId"
         - $ref: "#/components/parameters/preferReturn"
       requestBody:
         $ref: "#/components/requestBodies/messages"
@@ -337,13 +334,6 @@ components:
       schema:
         type: string
         format: boolean
-    rowFilter.trees.isDeleted:
-      name: isDeleted
-      required: false
-      in: query
-      schema:
-        type: string
-        format: boolean
     rowFilter.trees.createdAt:
       name: createdAt
       required: false
@@ -358,6 +348,34 @@ components:
       schema:
         type: string
         format: timestamp with time zone
+    rowFilter.trees.forkSourceId:
+      name: forkSourceId
+      required: false
+      in: query
+      schema:
+        type: string
+        format: uuid
+    rowFilter.trees.settings:
+      name: settings
+      required: false
+      in: query
+      schema:
+        type: string
+        format: jsonb
+    rowFilter.trees.isTemplate:
+      name: isTemplate
+      required: false
+      in: query
+      schema:
+        type: string
+        format: boolean
+    rowFilter.trees.templateId:
+      name: templateId
+      required: false
+      in: query
+      schema:
+        type: string
+        format: uuid
     rowFilter.messages.id:
       name: id
       required: false
@@ -386,13 +404,6 @@ components:
       schema:
         type: string
         format: text
-    rowFilter.messages.tokens:
-      name: tokens
-      required: false
-      in: query
-      schema:
-        type: string
-        format: integer
     rowFilter.messages.role:
       name: role
       required: false
@@ -400,13 +411,6 @@ components:
       schema:
         type: string
         format: text
-    rowFilter.messages.isDeleted:
-      name: isDeleted
-      required: false
-      in: query
-      schema:
-        type: string
-        format: boolean
     rowFilter.messages.createdAt:
       name: createdAt
       required: false
@@ -421,20 +425,6 @@ components:
       schema:
         type: string
         format: timestamp with time zone
-    rowFilter.messages.isTemplate:
-      name: isTemplate
-      required: false
-      in: query
-      schema:
-        type: string
-        format: boolean
-    rowFilter.messages.templateId:
-      name: templateId
-      required: false
-      in: query
-      schema:
-        type: string
-        format: uuid
   requestBodies:
     trees:
       content:
@@ -467,9 +457,9 @@ components:
         - userId
         - forks
         - isPublic
-        - isDeleted
         - createdAt
         - updatedAt
+        - isTemplate
       properties:
         id:
           default: gen_random_uuid()
@@ -496,10 +486,6 @@ components:
           default: false
           format: boolean
           type: boolean
-        isDeleted:
-          default: false
-          format: boolean
-          type: boolean
         createdAt:
           default: now()
           format: timestamp with time zone
@@ -508,16 +494,32 @@ components:
           default: now()
           format: timestamp with time zone
           type: string
+        forkSourceId:
+          description: |-
+            Note:
+            This is a Foreign Key to `trees.id`.<fk table='trees' column='id'/>
+          format: uuid
+          type: string
+        settings:
+          format: jsonb
+        isTemplate:
+          default: false
+          format: boolean
+          type: boolean
+        templateId:
+          description: |-
+            Note:
+            This is a Foreign Key to `trees.id`.<fk table='trees' column='id'/>
+          format: uuid
+          type: string
       type: object
     messages:
       required:
         - id
         - treeId
         - content
-        - isDeleted
         - createdAt
         - updatedAt
-        - isTemplate
       properties:
         id:
           default: gen_random_uuid()
@@ -542,16 +544,9 @@ components:
         content:
           format: text
           type: string
-        tokens:
-          format: integer
-          type: integer
         role:
           format: text
           type: string
-        isDeleted:
-          default: false
-          format: boolean
-          type: boolean
         createdAt:
           default: now()
           format: timestamp with time zone
@@ -559,16 +554,5 @@ components:
         updatedAt:
           default: now()
           format: timestamp with time zone
-          type: string
-        isTemplate:
-          default: false
-          format: boolean
-          type: boolean
-        templateId:
-          description: >-
-            Note:
-
-            This is a Foreign Key to `messages.id`.<fk table='messages' column='id'/>
-          format: uuid
           type: string
       type: object

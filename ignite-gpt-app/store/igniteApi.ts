@@ -16,9 +16,12 @@ const injectedRtkApi = api.injectEndpoints({
           userId: queryArg.userId,
           forks: queryArg.forks,
           isPublic: queryArg.isPublic,
-          isDeleted: queryArg.isDeleted,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
+          forkSourceId: queryArg.forkSourceId,
+          settings: queryArg.settings,
+          isTemplate: queryArg.isTemplate,
+          templateId: queryArg.templateId,
           select: queryArg.select,
           order: queryArg.order,
           offset: queryArg.offset,
@@ -47,9 +50,12 @@ const injectedRtkApi = api.injectEndpoints({
           userId: queryArg.userId,
           forks: queryArg.forks,
           isPublic: queryArg.isPublic,
-          isDeleted: queryArg.isDeleted,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
+          forkSourceId: queryArg.forkSourceId,
+          settings: queryArg.settings,
+          isTemplate: queryArg.isTemplate,
+          templateId: queryArg.templateId,
         },
       }),
     }),
@@ -66,9 +72,12 @@ const injectedRtkApi = api.injectEndpoints({
           userId: queryArg.userId,
           forks: queryArg.forks,
           isPublic: queryArg.isPublic,
-          isDeleted: queryArg.isDeleted,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
+          forkSourceId: queryArg.forkSourceId,
+          settings: queryArg.settings,
+          isTemplate: queryArg.isTemplate,
+          templateId: queryArg.templateId,
         },
       }),
     }),
@@ -85,13 +94,9 @@ const injectedRtkApi = api.injectEndpoints({
           treeId: queryArg.treeId,
           parent: queryArg.parent,
           content: queryArg.content,
-          tokens: queryArg.tokens,
           role: queryArg.role,
-          isDeleted: queryArg.isDeleted,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
-          isTemplate: queryArg.isTemplate,
-          templateId: queryArg.templateId,
           select: queryArg.select,
           order: queryArg.order,
           offset: queryArg.offset,
@@ -121,13 +126,9 @@ const injectedRtkApi = api.injectEndpoints({
           treeId: queryArg.treeId,
           parent: queryArg.parent,
           content: queryArg.content,
-          tokens: queryArg.tokens,
           role: queryArg.role,
-          isDeleted: queryArg.isDeleted,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
-          isTemplate: queryArg.isTemplate,
-          templateId: queryArg.templateId,
         },
       }),
     }),
@@ -145,13 +146,9 @@ const injectedRtkApi = api.injectEndpoints({
           treeId: queryArg.treeId,
           parent: queryArg.parent,
           content: queryArg.content,
-          tokens: queryArg.tokens,
           role: queryArg.role,
-          isDeleted: queryArg.isDeleted,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
-          isTemplate: queryArg.isTemplate,
-          templateId: queryArg.templateId,
         },
       }),
     }),
@@ -169,9 +166,12 @@ export type GetTreesApiArg = {
   userId?: string
   forks?: string
   isPublic?: string
-  isDeleted?: string
   createdAt?: string
   updatedAt?: string
+  forkSourceId?: string
+  settings?: string
+  isTemplate?: string
+  templateId?: string
   /** Filtering Columns */
   select?: string
   /** Ordering */
@@ -209,9 +209,12 @@ export type DeleteTreesApiArg = {
   userId?: string
   forks?: string
   isPublic?: string
-  isDeleted?: string
   createdAt?: string
   updatedAt?: string
+  forkSourceId?: string
+  settings?: string
+  isTemplate?: string
+  templateId?: string
   /** Preference */
   prefer?: 'return=representation' | 'return=minimal' | 'return=none'
 }
@@ -223,9 +226,12 @@ export type PatchTreesApiArg = {
   userId?: string
   forks?: string
   isPublic?: string
-  isDeleted?: string
   createdAt?: string
   updatedAt?: string
+  forkSourceId?: string
+  settings?: string
+  isTemplate?: string
+  templateId?: string
   /** Preference */
   prefer?: 'return=representation' | 'return=minimal' | 'return=none'
   /** trees */
@@ -239,13 +245,9 @@ export type GetMessagesApiArg = {
   treeId?: string
   parent?: string
   content?: string
-  tokens?: string
   role?: string
-  isDeleted?: string
   createdAt?: string
   updatedAt?: string
-  isTemplate?: string
-  templateId?: string
   /** Filtering Columns */
   select?: string
   /** Ordering */
@@ -281,13 +283,9 @@ export type DeleteMessagesApiArg = {
   treeId?: string
   parent?: string
   content?: string
-  tokens?: string
   role?: string
-  isDeleted?: string
   createdAt?: string
   updatedAt?: string
-  isTemplate?: string
-  templateId?: string
   /** Preference */
   prefer?: 'return=representation' | 'return=minimal' | 'return=none'
 }
@@ -297,13 +295,9 @@ export type PatchMessagesApiArg = {
   treeId?: string
   parent?: string
   content?: string
-  tokens?: string
   role?: string
-  isDeleted?: string
   createdAt?: string
   updatedAt?: string
-  isTemplate?: string
-  templateId?: string
   /** Preference */
   prefer?: 'return=representation' | 'return=minimal' | 'return=none'
   /** messages */
@@ -316,22 +310,21 @@ export type Trees = {
   userId: string
   forks: number
   isPublic: boolean
-  isDeleted: boolean
   createdAt: string
   updatedAt: string
+  forkSourceId?: string
+  settings?: any
+  isTemplate: boolean
+  templateId?: string
 }
 export type Messages = {
   id: string
   treeId: string
   parent?: string
   content: string
-  tokens?: number
   role?: string
-  isDeleted: boolean
   createdAt: string
   updatedAt: string
-  isTemplate: boolean
-  templateId?: string
 }
 export const {
   useGetTreesQuery,
