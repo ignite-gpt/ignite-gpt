@@ -40,6 +40,50 @@ USING ("userId" = auth.uid())
 WITH CHECK ("userId" = auth.uid())
 ```
 
+## Trees Functions and Triggers
+
+### Ignore changes to read-only `trees` columns
+
+```sql
+CREATE OR REPLACE FUNCTION public."treesReadOnlyColumnsOnInsert"()
+  RETURNS trigger
+  LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.forks := DEFAULT;
+  NEW."createdAt" := DEFAULT;
+  NEW."updatedAt" := DEFAULT;
+  RETURN NEW;
+END;
+$function$
+```
+
+```sql
+CREATE TRIGGER "treesReadOnlyColumnsOnInsertTrigger"
+BEFORE INSERT ON public.trees
+FOR EACH ROW EXECUTE FUNCTION "treesReadOnlyColumnsOnInsert"();
+```
+
+```sql
+CREATE OR REPLACE FUNCTION public."treesReadOnlyColumnsOnUpdate"()
+  RETURNS trigger
+  LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.forks := OLD.forks;
+  NEW."createdAt" := OLD."createdAt";
+  NEW."updatedAt" := OLD."updatedAt";
+  RETURN NEW;
+END;
+$function$
+```
+
+```sql
+CREATE TRIGGER "treesReadOnlyColumnsOnUpdateTrigger"
+BEFORE UPDATE ON public.trees
+FOR EACH ROW EXECUTE FUNCTION "treesReadOnlyColumnsOnUpdate"();
+```
+
 ## Messages
 
 ```sql
@@ -74,4 +118,46 @@ AS PERMISSIVE FOR ALL
 TO authenticated
 USING (EXISTS ( SELECT 1 FROM "trees" WHERE "trees"."id" = "messages"."treeId" AND "trees"."userId" = auth.uid() ))
 WITH CHECK (EXISTS ( SELECT 1 FROM "trees" WHERE "trees"."id" = "messages"."treeId" AND "trees"."userId" = auth.uid() ))
+```
+
+## Messages Functions and Triggers
+
+Ignore changes to read-only `messages` columns
+
+```sql
+CREATE OR REPLACE FUNCTION public."messagesReadOnlyColumnsOnInsert"()
+  RETURNS trigger
+  LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW."createdAt" := DEFAULT;
+  NEW."updatedAt" := DEFAULT;
+  RETURN NEW;
+END;
+$function$
+```
+
+```sql
+CREATE TRIGGER "messagesReadOnlyColumnsOnInsertTrigger"
+BEFORE INSERT ON public.messages
+FOR EACH ROW EXECUTE FUNCTION "messagesReadOnlyColumnsOnInsert"();
+```
+
+```sql
+CREATE OR REPLACE FUNCTION public."messagesReadOnlyColumnsOnUpdate"()
+  RETURNS trigger
+  LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW."createdAt" := OLD."createdAt";
+  NEW."updatedAt" := OLD."updatedAt";
+  RETURN NEW;
+END;
+$function$
+```
+
+```sql
+CREATE TRIGGER "messagesReadOnlyColumnsOnUpdateTrigger"
+BEFORE UPDATE ON public.messages
+FOR EACH ROW EXECUTE FUNCTION "messagesReadOnlyColumnsOnUpdate"();
 ```
