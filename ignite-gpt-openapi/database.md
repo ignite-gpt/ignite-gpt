@@ -84,6 +84,52 @@ BEFORE UPDATE ON public.trees
 FOR EACH ROW EXECUTE FUNCTION "treesReadOnlyColumnsOnUpdate"();
 ```
 
+### Update `forks` count
+
+```sql
+CREATE OR REPLACE FUNCTION public."treesForksIncrement"()
+  RETURNS trigger
+  LANGUAGE plpgsql
+AS $function$
+BEGIN
+  IF NEW."forkSourceId" IS NOT NULL THEN
+    UPDATE public.trees
+    SET "forks" = "forks" + 1
+    WHERE "id" = NEW."forkSourceId";
+  END IF;
+  RETURN NEW;
+END;
+$function$
+```
+
+```sql
+CREATE TRIGGER "treesForksOnInsertTrigger"
+AFTER INSERT ON public.trees
+FOR EACH ROW EXECUTE FUNCTION "treesForksIncrement"();
+```
+
+```sql
+CREATE OR REPLACE FUNCTION public."treesForksDecrement"()
+  RETURNS trigger
+  LANGUAGE plpgsql
+AS $function$
+BEGIN
+  IF OLD."forkSourceId" IS NOT NULL THEN
+    UPDATE public.trees
+    SET "forks" = "forks" - 1
+    WHERE "id" = OLD."forkSourceId";
+  END IF;
+  RETURN OLD;
+END;
+$function$
+```
+
+```sql
+CREATE TRIGGER "treesForksOnDeleteTrigger"
+AFTER DELETE ON public.trees
+FOR EACH ROW EXECUTE FUNCTION "treesForksDecrement"();
+```
+
 ## Messages
 
 ```sql
