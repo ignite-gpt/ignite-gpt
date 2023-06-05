@@ -130,6 +130,26 @@ AFTER DELETE ON public.trees
 FOR EACH ROW EXECUTE FUNCTION "treesForksDecrement"();
 ```
 
+### Update `updatedAt` timestamp
+
+```sql
+CREATE OR REPLACE FUNCTION public."setUpdatedAtToNow"()
+  RETURNS trigger
+  LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW."updatedAt" := NOW();
+  RETURN NEW;
+END;
+$function$
+```
+
+```sql
+CREATE TRIGGER "treesUpdatedAtOnUpdateTrigger"
+BEFORE UPDATE ON public.trees
+FOR EACH ROW EXECUTE FUNCTION "setUpdatedAtToNow"();
+```
+
 ## Messages
 
 ```sql
@@ -168,7 +188,7 @@ WITH CHECK (EXISTS ( SELECT 1 FROM "trees" WHERE "trees"."id" = "messages"."tree
 
 ## Messages Functions and Triggers
 
-Ignore changes to read-only `messages` columns
+### Ignore changes to read-only `messages` columns
 
 ```sql
 CREATE OR REPLACE FUNCTION public."messagesReadOnlyColumnsOnInsert"()
@@ -206,4 +226,12 @@ $function$
 CREATE TRIGGER "messagesReadOnlyColumnsOnUpdateTrigger"
 BEFORE UPDATE ON public.messages
 FOR EACH ROW EXECUTE FUNCTION "messagesReadOnlyColumnsOnUpdate"();
+```
+
+### Update `updatedAt` timestamp
+
+```sql
+CREATE TRIGGER "messagesUpdatedAtOnUpdateTrigger"
+BEFORE UPDATE ON public.messages
+FOR EACH ROW EXECUTE FUNCTION "setUpdatedAtToNow"();
 ```
