@@ -11,11 +11,14 @@ create table
     isPublic boolean not null default false,
     createdAt timestamp with time zone not null default now(),
     updatedAt timestamp with time zone not null default now(),
-    forkedFromTreeId uuid null,
+    forkSourceId uuid null,
     settings jsonb null,
+    isTemplate boolean not null default false,
+    templateId uuid null,
     constraint trees_pkey primary key (id),
     constraint trees_id_key unique (id),
-    constraint trees_forkedFromTreeId_fkey foreign key ("forkedFromTreeId") references trees (id) on delete set default,
+    constraint trees_forkSourceId_fkey foreign key ("forkSourceId") references trees (id) on delete set default,
+    constraint trees_templateId_fkey foreign key ("templateId") references trees (id) on delete set default,
     constraint trees_userId_fkey foreign key ("userId") references auth.users (id) on delete cascade
   ) tablespace pg_default;
 ```
@@ -49,12 +52,9 @@ create table
     role text null,
     createdAt timestamp with time zone not null default now(),
     updatedAt timestamp with time zone not null default now(),
-    isTemplate boolean not null default false,
-    templateId uuid null,
     constraint messages_pkey primary key (id),
     constraint messages_id_key unique (id),
     constraint messages_parent_fkey foreign key (parent) references messages (id) on delete cascade,
-    constraint messages_templateId_fkey foreign key ("templateId") references messages (id) on delete set default,
     constraint messages_treeId_fkey foreign key ("treeId") references trees (id) on delete cascade
   ) tablespace pg_default;
 ```
