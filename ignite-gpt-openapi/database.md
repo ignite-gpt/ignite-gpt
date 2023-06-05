@@ -13,6 +13,7 @@ create table
     createdAt timestamp with time zone not null default now(),
     updatedAt timestamp with time zone not null default now(),
     forkedFromTreeId uuid null,
+    settings jsonb null,
     constraint trees_pkey primary key (id),
     constraint trees_id_key unique (id),
     constraint trees_forkedFromTreeId_fkey foreign key ("forkedFromTreeId") references trees (id) on delete set default,
