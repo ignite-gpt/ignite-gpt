@@ -12,8 +12,10 @@ create table
     isDeleted boolean not null default false,
     createdAt timestamp with time zone not null default now(),
     updatedAt timestamp with time zone not null default now(),
+    forkedFromTreeId uuid null,
     constraint trees_pkey primary key (id),
     constraint trees_id_key unique (id),
+    constraint trees_forkedFromTreeId_fkey foreign key ("forkedFromTreeId") references trees (id) on delete set default,
     constraint trees_userId_fkey foreign key ("userId") references auth.users (id) on delete cascade
   ) tablespace pg_default;
 ```
@@ -54,9 +56,8 @@ create table
     constraint messages_pkey primary key (id),
     constraint messages_id_key unique (id),
     constraint messages_parent_fkey foreign key (parent) references messages (id) on delete cascade,
-    constraint messages_templateId_fkey foreign key ("templateId") references messages (id) on delete set null,
-    constraint messages_treeId_fkey foreign key ("treeId") references trees (id) on delete cascade,
-    constraint messages_userId_fkey foreign key ("userId") references auth.users (id) on delete cascade
+    constraint messages_templateId_fkey foreign key ("templateId") references messages (id) on delete set default,
+    constraint messages_treeId_fkey foreign key ("treeId") references trees (id) on delete cascade
   ) tablespace pg_default;
 ```
 
