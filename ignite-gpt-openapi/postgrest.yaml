@@ -122,6 +122,7 @@ paths:
         - $ref: "#/components/parameters/rowFilter.messages.role"
         - $ref: "#/components/parameters/rowFilter.messages.createdAt"
         - $ref: "#/components/parameters/rowFilter.messages.updatedAt"
+        - $ref: "#/components/parameters/rowFilter.messages.comment"
         - $ref: "#/components/parameters/select"
         - $ref: "#/components/parameters/order"
         - $ref: "#/components/parameters/range"
@@ -172,6 +173,7 @@ paths:
         - $ref: "#/components/parameters/rowFilter.messages.role"
         - $ref: "#/components/parameters/rowFilter.messages.createdAt"
         - $ref: "#/components/parameters/rowFilter.messages.updatedAt"
+        - $ref: "#/components/parameters/rowFilter.messages.comment"
         - $ref: "#/components/parameters/preferReturn"
       responses:
         "204":
@@ -187,6 +189,7 @@ paths:
         - $ref: "#/components/parameters/rowFilter.messages.role"
         - $ref: "#/components/parameters/rowFilter.messages.createdAt"
         - $ref: "#/components/parameters/rowFilter.messages.updatedAt"
+        - $ref: "#/components/parameters/rowFilter.messages.comment"
         - $ref: "#/components/parameters/preferReturn"
       requestBody:
         $ref: "#/components/requestBodies/messages"
@@ -425,6 +428,14 @@ components:
       schema:
         type: string
         format: timestamp with time zone
+    rowFilter.messages.comment:
+      name: comment
+      description: Extra user-provided information, not sent to LLM
+      required: false
+      in: query
+      schema:
+        type: string
+        format: text
   requestBodies:
     trees:
       content:
@@ -554,5 +565,9 @@ components:
         updatedAt:
           default: now()
           format: timestamp with time zone
+          type: string
+        comment:
+          description: Extra user-provided information, not sent to LLM
+          format: text
           type: string
       type: object

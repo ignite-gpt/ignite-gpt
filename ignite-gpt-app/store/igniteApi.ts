@@ -97,6 +97,7 @@ const injectedRtkApi = api.injectEndpoints({
           role: queryArg.role,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
+          comment: queryArg.comment,
           select: queryArg.select,
           order: queryArg.order,
           offset: queryArg.offset,
@@ -129,6 +130,7 @@ const injectedRtkApi = api.injectEndpoints({
           role: queryArg.role,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
+          comment: queryArg.comment,
         },
       }),
     }),
@@ -149,6 +151,7 @@ const injectedRtkApi = api.injectEndpoints({
           role: queryArg.role,
           createdAt: queryArg.createdAt,
           updatedAt: queryArg.updatedAt,
+          comment: queryArg.comment,
         },
       }),
     }),
@@ -248,6 +251,8 @@ export type GetMessagesApiArg = {
   role?: string
   createdAt?: string
   updatedAt?: string
+  /** Extra user-provided information, not sent to LLM */
+  comment?: string
   /** Filtering Columns */
   select?: string
   /** Ordering */
@@ -286,6 +291,8 @@ export type DeleteMessagesApiArg = {
   role?: string
   createdAt?: string
   updatedAt?: string
+  /** Extra user-provided information, not sent to LLM */
+  comment?: string
   /** Preference */
   prefer?: 'return=representation' | 'return=minimal' | 'return=none'
 }
@@ -298,6 +305,8 @@ export type PatchMessagesApiArg = {
   role?: string
   createdAt?: string
   updatedAt?: string
+  /** Extra user-provided information, not sent to LLM */
+  comment?: string
   /** Preference */
   prefer?: 'return=representation' | 'return=minimal' | 'return=none'
   /** messages */
@@ -325,6 +334,7 @@ export type Messages = {
   role?: string
   createdAt: string
   updatedAt: string
+  comment?: string
 }
 export const {
   useGetTreesQuery,
