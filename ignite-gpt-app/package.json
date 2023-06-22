@@ -22,7 +22,7 @@
     "expo-constants": "~14.2.1",
     "expo-dev-client": "~2.2.1",
     "expo-linking": "~4.0.1",
-    "expo-router": "^1.5.3",
+    "expo-router": "^1.7.7",
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.2",
     "iconoir-react-native": "^6.8.0",
