@@ -1,13 +1,10 @@
 import { Column } from 'native-base'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import AppBar from '../components/AppBar'
 
-export default function Chrome({ children }) {
-  const insets = useSafeAreaInsets()
-
+export default function Chrome({ children, ...props }) {
   return (
-    <Column height="100%" width="100%" paddingBottom={insets.bottom}>
+    <Column height="100%" width="100%" {...props}>
       <AppBar />
       {children}
     </Column>

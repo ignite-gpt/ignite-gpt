@@ -1,5 +1,6 @@
 import { Center, Column, Flex, Text } from 'native-base'
 import { useState } from 'react'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import Logo from '../assets/logo-medium.svg'
 import ApiKeyModal from '../components/ApiKeyModal'
@@ -8,13 +9,14 @@ import ChatInput from '../components/ChatInput'
 import Chrome from '../components/Chrome'
 import { useAppSelector } from '../store/hooks'
 
-export default function Page() {
+export default function Index() {
+  const insets = useSafeAreaInsets()
   const openAiApiKey = useAppSelector((state) => state.env?.openAiApiKey)
   const [response, setResponse] = useState('')
   const [message, setMessage] = useState('')
 
   return (
-    <Chrome>
+    <Chrome paddingBottom={insets.bottom}>
       <Flex direction="row" flexGrow={1} padding={4}>
         <Column space={1} width="100%">
           {!response && !message && (
