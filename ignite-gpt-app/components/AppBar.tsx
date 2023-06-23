@@ -12,9 +12,16 @@ export default function AppBar({ title = 'IgniteGPT' }) {
       options={{
         title,
         headerLeft: () => (
-          <View paddingLeft={!isWeb ? 0 : 2}>
+          <View flexDirection="row" paddingRight={!isWeb ? 0 : 2}>
             <IconButton
-              icon={<Menu color={colors.white} strokeWidth={1.8} />}
+              icon={
+                <Menu
+                  color={colors.white}
+                  height={22}
+                  strokeWidth={1.8}
+                  width={22}
+                />
+              }
               variant="outline"
             />
           </View>
@@ -23,10 +30,17 @@ export default function AppBar({ title = 'IgniteGPT' }) {
           backgroundColor: colors.primary[600],
         },
         headerRight: () => (
-          <View paddingRight={!isWeb ? 0 : 2}>
-            <Link href="/settings">
+          <View flexDirection="row" paddingRight={!isWeb ? 0 : 2}>
+            <Link href="/settings" asChild>
               <IconButton
-                icon={<UserCircle color={colors.white} strokeWidth={1.8} />}
+                icon={
+                  <UserCircle
+                    color={colors.white}
+                    height={22}
+                    strokeWidth={1.8}
+                    width={22}
+                  />
+                }
                 variant="outline"
               />
             </Link>
@@ -36,7 +50,7 @@ export default function AppBar({ title = 'IgniteGPT' }) {
         headerTitle: ({ children }) => (
           <Row space={4}>
             <Heading size="lg" color="white">
-              {children}
+              <Link href="/">{children}</Link>
             </Heading>
             <Badge alignSelf="center">pre-alpha</Badge>
           </Row>
