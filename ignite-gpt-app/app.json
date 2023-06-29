@@ -11,6 +11,9 @@
     },
     "android": {
       "package": "ai.ignitegpt.app"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
