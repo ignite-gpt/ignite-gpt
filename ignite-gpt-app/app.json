@@ -7,10 +7,12 @@
       "bundler": "metro"
     },
     "ios": {
-      "bundleIdentifier": "ai.ignitegpt.app"
+      "bundleIdentifier": "ai.ignitegpt.app",
+      "supportsTablet": true
     },
     "android": {
       "package": "ai.ignitegpt.app"
-    }
+    },
+    "plugins": ["expo-router"]
   }
 }
